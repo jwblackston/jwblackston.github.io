@@ -1,2 +1,4 @@
 name: J. Walker Blackston, MSPH, PhD Student in Epidemiology
 markdown: kramdown
+
+permalink: /blog/:year/:month/:day/:title
