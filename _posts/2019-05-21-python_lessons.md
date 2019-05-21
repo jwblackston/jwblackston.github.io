@@ -12,3 +12,6 @@ Take this blog for example. In order for me to demonstrate what I learn, I need 
 At any rate, this post is really a procrastination technique for my next chapter of "Automate the Boring Stuff" on Lists. 
 
 Here goes nothin' 
+
+
+Post mortem: I just worked on python functions that can return desired parameters 1) to the exclusion of the other parameters, accomplished through an 'if-else' code block, and 2) that return statements can feature ALL possible parameters of the function. I also learned about the importance of setting defaults to your arguments when a function will be used repeatedly for the same data or object. 
