@@ -15,3 +15,5 @@ Here goes nothin'
 
 
 Post mortem: I just worked on python functions that can return desired parameters 1) to the exclusion of the other parameters, accomplished through an 'if-else' code block, and 2) that return statements can feature ALL possible parameters of the function. I also learned about the importance of setting defaults to your arguments when a function will be used repeatedly for the same data or object. 
+
+Post post mortem: It turns out its very difficult to add google analytics and comments into your blog, so that will be a learning lesson. That also caused the delay in this post (the posts directory wouldn't commit because of faulty code). 
