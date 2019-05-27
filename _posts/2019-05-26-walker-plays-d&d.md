@@ -12,15 +12,11 @@ Importantly, this experience brought me an idea for my first "personal project" 
 
 One condition I'd like to play with here is the concept of "advantaged" or "disadvantaged" rolls. This simply means that when you roll 2 d20's, you take the lower of the rolls. If you were creating a D&D Python game, how would you simulate these rolls and make a decision?
 
-'''
-#let r_1 and r_2 be the set of possible rolls
+''' #let r_1 and r_2 be the set of possible rolls
 r_1 = list(range(1, 20, 1)
 r_2 = list(range(1, 20, 1)
-'''
-
-Create functions for advantage and disadvantage rolls:
-'''
 #create a function that will take in the move of both, draw randomly with equal probability for all numbers, and make a simple decision to give advantage:
+
 import random
 import numpy as np
 def die():
