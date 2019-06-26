@@ -1,9 +1,20 @@
 body {
-    margin: 60px auto;
-    width: 70%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: sans-serif;
+    background-color: #000000;
+    color: #FFFFFF;
+    text-shadow: 0px 1px 0 #808080;
+    background-image: url('/images/data1.jpeg')
+}
+nav {
+  margin-bottom: 5em;
+  padding: 2em;
+  background-color: #303030;
+  border-bottom: 1px solid #FFFFFF;
 }
 nav ul, footer ul {
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
     padding: 0px;
     list-style: none;
     font-weight: bold;
@@ -14,30 +25,55 @@ nav ul li, footer ul li {
 }
 a {
     text-decoration: none;
-    color: #999;
+    color: #FFEFAF;
 }
 a:hover {
     text-decoration: underline;
 }
-h1 {
-    font-size: 3em;
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
-}
-p {
-    font-size: 1.5em;
-    line-height: 1.4em;
-    color: #333;
-}
 footer {
-    border-top: 1px solid #d5d5d5;
-    font-size: .8em;
+  margin: 2em;
+  background-color: #303030;
+  border-radius: 1ex;
+  padding: 2em;
+  border: 1px solid white;
 }
-
-ul.posts { 
-    margin: 20px auto 40px; 
-    font-size: 1.5em;
+ul.posts {
 }
 
 ul.posts li {
-    list-style: none;
+}
+
+.container {
+  background-color: #303030;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-radius: 1ex;
+  height: 100%;
+  border: 1px solid #FFFFFF;
+}
+
+.logo a {
+	border: 1px solid #808080;
+	padding: 1em;
+	border-radius: 1em;
+	color: #EFEFEF;
+	background-color: #000080;
+	text-shadow: 0 0 1ex #FFFFFF;
+  font-size: x-large;
+}
+.logo a:hover {
+  background-color: #0000A0;
+  text-decoration: none;
+}
+p {
+  font-weight: 300;
+}
+pre {
+  background: #505050;
+  overflow: scroll;
+  padding: 1em;
 }
