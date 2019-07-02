@@ -1,6 +1,6 @@
 ---
 layout: post
-title: J. Walker Blackston, aspiring data scientist, goes back to school (again):
+title: J. Walker Blackston, aspiring data scientist, goes back to school (again)
 date: 2019-06-05
 ---
 

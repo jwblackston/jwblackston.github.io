@@ -1,0 +1,71 @@
+---
+---
+
+@import "minima";
+
+.project {
+        padding: 1em;
+        margin: 1em;
+	border-bottom: 1px solid #808080;
+	border-right: 1px solid #808080;
+}
+.project:nth-child(even) img {
+        float: left;
+        margin-right: 1em;
+}
+.project:nth-child(odd) img {
+        float: left;
+        margin-right: 1em;
+}
+.project:nth-child(even) {
+        background-color: #EFEFEF;
+}
+.project:nth-child(odd) {
+        background-color: #EFEFFF;
+}
+
+.additional-content {
+	background-color: #EFEFEF;
+	width: 100%;
+	margin: 0px;
+	padding: 1em;
+}
+
+a.site-title {
+	padding: 30px 0px;
+}
+
+.site-header a, .site-header a:visited {
+	color: #FFFFFF;
+}
+
+.site-nav a.page-link {
+	color: #FFFFFF;
+}
+
+.site-title a:hover {
+	text-decoration: underline;
+}
+
+.site-header {
+	background-image: url('/assets/images/banner.jpg');
+	color: #FFFFFF;
+}
+
+.site-nav {
+	line-height: 114px;
+}
+
+@media screen and (max-width: 600px) {
+
+nav.site-nav {
+	background-color: #404040;
+	border: 1px solid #303030;
+	line-height: 54px;
+}
+
+nav.site-nav .menu-icon > svg {
+	fill: #FFFFFF;
+}
+
+}
