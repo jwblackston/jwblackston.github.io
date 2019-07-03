@@ -14,7 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Walker Blackston
-email: jblackston@tulane.edu
+email: blackstonjw@icloud.com
 description: >- # this means to ignore newlines until "baseurl:"
   I am a first year PhD student in epidemiology and biostatistics at Tulane University (roll wave!). I am a Mississippian who loves his partner, retriever, and being generally skeptical about things.
 baseurl: "" # the subpath of your site, e.g. /blog
