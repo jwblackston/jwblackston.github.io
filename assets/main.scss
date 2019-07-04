@@ -1,11 +1,13 @@
 ---
 ---
 
+$header-height: 300px;
+
 @import "minima";
 
 .project {
-        padding: 1em;
-        margin: 1em;
+  padding: 1em;
+  margin: 1em;
 	border-bottom: 1px solid #808080;
 	border-right: 1px solid #808080;
 }
@@ -32,15 +34,26 @@
 }
 
 a.site-title {
-	padding: 30px 0px;
 }
 
 .site-header a, .site-header a:visited {
-	color: #FFFFFF;
+  color: #FFFFFF;
+  line-height: $header-height;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0px #000000;
+  font-weight: bold;
+  height: $header-height;
+  vertical-align: middle;
 }
 
 .site-nav a.page-link {
 	color: #FFFFFF;
+  line-height: $header-height;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0px #000000;
+  font-weight: bold;
+  height: $header-height;
+  vertical-align: middle;
 }
 
 .site-title a:hover {
@@ -49,11 +62,14 @@ a.site-title {
 
 .site-header {
 	background-image: url('/assets/images/tulane.jpg');
+	background-size: cover;
+	background-position: bottom center;
+	background-repeat: no-repeat;
 	color: #FFFFFF;
+	height: $header-height;
 }
 
 .site-nav {
-	line-height: 114px;
 }
 
 @media screen and (max-width: 600px) {
