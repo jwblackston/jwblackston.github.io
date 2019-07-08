@@ -1,0 +1,299 @@
+---
+title: ' What Best Predicts Airbnb Pricing in New Orleans?'
+author: "J. Walker Blackston, MSPH"
+date: "7/7/2019"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+*est. reading time: 15 minutes. For the technically incurious, plots and a main take-aways will be provided at the bottom.*
+
+Having now lived in New Orleans for the past year, several things have become apparent:
+
+1) The heat is as advertised.
+2) The people are as advertised.
+3) Be careful about the company in which you mention an "Airbnb" - *whether you are on the business end or renting*
+
+Regardless, I love this place and it's clear that many of our millions of yearly visitors do as well. I am not here to provide support for our current zoning or short-term rental policies. Like it or not, Airbnb is here to stay. **Plus, CNN Money rated us as one of the "worst cities for renters in the United States," so we should be arming ourselves with as much data as possible here. https://money.cnn.com/2015/03/16/real_estate/cities-highest-rent/index.html**
+
+For my purposes, this analysis will only evaluate pricing for New Orleans where a friend is considering renting out several units. **Finding the "ideal" pricing for these units, would be fundamental to getting and securing clients.**
+
+The main purpose of this analysis is simple: *how can we model optimal pricing across different types of Airbnb rentals in Nola?*
+
+
+## Good ol' Fashioned Linear Regression:
+
+Despite the appeal of sexier approaches, the regression remains one of the most popular approaches to answering research questions (citation). With this in mind, I wanted to see what combination of factors most predicted price, a continuous outcome, for selected Airbnb rentals in New Orleans, Louisiana. Here goes nothin'!
+
+### Import all data and relevant packages: 
+*note: I will be hiding excessive code (e.g. loading-in packages) for presentation wherever possible, but will provide a footnote .txt file of my complete code for the more technically curious*
+
+```{r packs, message=FALSE, warning=FALSE, include=FALSE}
+options(repos='http://cran.rstudio.com/')
+install.packages('ggplot2')
+install.packages("missForest")
+install.packages('mice')
+install.packages('ggcorrplot')
+install.packages('mlbench')
+library(rtemis)
+library(ggplot2)
+library(readr)
+library(missForest)
+library(mice)
+library(ggcorrplot)
+library(mlbench)
+```
+
+All data were obtained from "http://insideairbnb.com/get-the-data.html"
+
+## The data:
+
+Looks like we have a lot of variables (features, to the ML folks), to deal with here - let's see which we can just eliminate via good ol' fashioned eyeball test. 
+
+```{r include=FALSE}
+listings <- read_csv("~/anaconda3/Python/listings.csv")
+data(listings)
+sapply(listings, class)
+```
+
+
+For our purposes, it is not going to be useful to keep any URL's, ID's, notes, names, streets, or further location information beyond neighborhood. This leaves us a few variables that could likely impact price (shown in the code below): 
+```{r echo=TRUE}
+keep <- c("host_listings_count", 
+          "neighbourhood_cleansed", "room_type", "accommodates", "bathrooms", "bedrooms", "beds", "price", 
+          "cleaning_fee", "minimum_nights", "maximum_nights", "number_of_reviews", "review_scores_rating", "instant_bookable")
+df_nola <- listings[keep]
+```
+
+
+### Let's visually inspect some of them. 
+
+- Accommodations/Recommended Guest Count: 
+
+I noticed a few demo projects online predicting Airbnb pricing, and this 'accommodates' variable appears in all of them. It makes sense, logically, that the more people your unit could hold, the more you should charge. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+price_accommodate <-ggplot(data=df_nola, aes(x=accommodates, y=price)) +
+  geom_bar(stat="identity", fill="steelblue")+
+  theme_minimal()
+print(price_accommodate + ggtitle("Figure 1. Accommodations by Price, New Orleans Airbnb's"))
+```
+
+*notice that the y-axis is a little funky, as my girlfriend points out, lovingly. This is because we have funky signs in front of our data that confuses our ggplot function. Let'ts get rid of them in the next line of data management.*
+
+- Beds: 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+price_beds <- ggplot(data=df_nola, aes(x=beds, y=price)) +
+  geom_bar(stat="identity", fill="steelblue")+
+  theme_minimal()
+print(price_beds + ggtitle("Figure 2. Number of Beds by Price, New Orleans Airbnb's"))
+```
+
+From this, we notice a few things. Prices for accommodations do not increase with linearity (or continuously as accommodations increase), but rather, cluster around what is likelt the most common accommodation count. Also, our data looks a little funky when we look at the number of beds for some listings. 
+
+Yeah, let's clean this up. We need to remove listings with more than 10 beds... because that seems ridiculous and also, like, a *hotel.* We should also remove the $ sign for price and cleaning fees to help with our analysis and presentation.  Our audience can assume we are dealing in U.S. dollars. 
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+df_cleaned <- subset(df_nola, df_nola$beds < 7) 
+df_cleaned$price = as.numeric(gsub("\\$", "", df_cleaned$price)) #converts price to numeric
+df_cleaned$cleaning_fee = as.numeric(gsub("\\$", "", df_cleaned$cleaning_fee))
+df_cleaned <- subset(df_cleaned, df_cleaned$price != "NA") #remove n=113 missing prices
+```
+
+This cleaned a total of 285 listings from our data set. No fear, we are still sufficiently powered with a few thousand listings remaining for further analysis. That said, what are the variables we should focus on that may or may not pass the eyeball test?
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+nums <- df_cleaned[c("host_listings_count", "accommodates", "beds", "bedrooms", "bathrooms", "maximum_nights", "minimum_nights",
+                   "review_scores_rating", "price")]
+```
+
+Before we jump right into our models, however, it would be useful to impute data for review scores. We can justify this move since its missingness represents less than 1% of the total sample size, but as a valuable predictor in a short list of predictors, we would like to be able employ a complete case analysis. 
+
+## Imputation: 
+
+```{r include=FALSE}
+df_cleaned.mis <- prodNA(df_cleaned, noNA = 0.1)
+temp <- mice(df_cleaned.mis,m=5,maxit=50,meth='pmm',seed=500)
+summary(temp)
+
+summary(temp$imp$review_scores_rating)
+
+#re compile data after pooling
+compl_df <- complete(temp, 1)
+```
+
+A basic rundown of the imputation process: 
+1) Generate a random list of NA's that comprise 10% of our sample size, 
+2) Initialize a temporary data set for our imputation package, 'mice', to generate values and store, and 
+3) compile our final data set from one of the 5 generated/imputed data sets. 
+
+For more technical details on 'mice' or  the mathematical support for imputation please see footnotes. 
+
+Check how this impacted our bed~price visualization:
+```{r echo=FALSE}
+price_beds_cleaned <- ggplot(data=compl_df, aes(x=beds, y=price)) +
+  geom_bar(stat="identity", fill="steelblue")+
+  theme_minimal()
+print(price_beds_cleaned + ggtitle("Figure 3. Number of Beds by Price, New Orleans Airbnb"))
+```
+
+Notice how this distribution differs from Figure 1. It's been normalized through a combination of imputation and trimming strange bed totals. Upon further reflection, however, we will note in constructing our models that beds and bedrooms are nearly perfectly corrleated. This suggests that we use one or the other. Using both might lead to overfitting. Our final models will reflect this choice. 
+
+And finally, how our variables are correlated with price: 
+```{r echo=FALSE}
+nums.cor <- cor(nums)
+num_imp <- compl_df[c("host_listings_count", "accommodates", "beds", "bedrooms", "bathrooms", "cleaning_fee",
+                       "review_scores_rating", "price")]
+num_imp.cor <- cor(num_imp)
+ggcorrplot(num_imp.cor, hc.order = TRUE, type = "lower",
+   lab = TRUE, insig = "blank")
+```
+
+Ignoring the obvious correlations, we should notice a few interesting things happening. Review scores for the listing (averaged rating across all metrics rating the stay, then scaled to a number out of 100) *do not seem to correlate with price in any significant cacpacity*. Also, bathrooms and the number of other listings seem to moderately correlate with changes in price. Let's include all of these variables in our modeling efforts. 
+
+## Linear Models:
+
+The basic form of our first model's equation will be: 
+$$Price = \alpha + \beta_{Accommodates} + \beta_{Beds} + \beta_{Bedrooms} + \beta_{Bathrooms} + \beta_{Host Listings Count} + \beta_{Cleaning Fee} + \beta_{Review Scores}$$
+Let's fit this model on our data and interpret (or don't!) our beta estimates/global model:
+
+```{r echo=FALSE}
+y = compl_df$price
+fit <- lm(compl_df$price ~ compl_df$accommodates + compl_df$beds + compl_df$bedrooms + 
+            compl_df$bathrooms + compl_df$host_listings_count + compl_df$cleaning_fee + compl_df$review_scores_rating, data=compl_df)
+summary(fit)
+```
+Before interpreting anything, we need to see if our model is 'globally significant' at p<.05. In our F-statistic, it appears so (*p* < .001). Now, in the 'Pr(>|t|)' column, we find p-values assessing the t-value for each parameter of interest. The null hypothesis here is that the parameter's distribution does not significantly differ from the standard t-distribution with mean of zero. Again, more technical details available below for the interested technical parties. In short, all predictors can be interpreted *except* for number of beds. Interesting. Now, we should caution that our model R-squared (or its ability to explain variation present in the data) is 0.35 or about 35%. This isn't great, but not terrible. Some respected findings in various industries have been built on models with an R-square of 0.20 or lower.
+
+*Also, we should notice something:* review ratings, why include them? As a first pass, this model is fine, but if we look again at our correlation plot, reviews (and cleaning fees) should not be included according to their low baseline correlation with our outcome, price. We will trim our model to include only variables with higher correlations: Accommodatess (*r* = 0.42), number of concurrent listings for the host (*r* = 0.29), number of beds (*r* = 0.35), number of bedrooms (*r* = 0.41), and bathrooms (*r* = 0.30). We will remove beds because beds and bedrooms so strongly correlate and may result in overfitting. 
+
+This model would generalize to: 
+$$Price = \alpha + \beta_{Accommodates} + \beta_{Beds} + \beta_{Bedrooms} + \beta_{Bathrooms} + \beta_{Cleaning Fee} + \beta_{Host Listings Count} $$
+When fit, this equation would look like this: 
+```{r echo=FALSE}
+fit_2 <- lm(price ~ accommodates + bedrooms + bathrooms + cleaning_fee + host_listings_count, data=compl_df)
+summary(fit_2)
+
+p_1 <- predict(fit_2, compl_df)
+
+# Compute errors: error
+error_1 <- p_1 - compl_df[["price"]]
+```
+Aside from these model diagnostics, looks like our RMSE (root-mean squared error, details in the footnotes) = 
+```{r echo=FALSE}
+ sqrt(mean(error_1 ^ 2))
+```
+
+***Important caveat:* We cannot, in any way, derive any causality from these findings. This was merely hypothesis generating, and an exploration of the data, and training exercise.** 
+
+But let's make some simple predictions. You just spiffed up your place and want to rent it out. Maybe you will be spending the summer in the Mediterranean or somewhere offshore... 
+
+
+Our model for pricing would therefore be (including coefficients):
+$$Y = 13.1X_i + 19.8X_j + 14.4X_k + 0.64X_l + 0.18X_m$$
+*letting i = accommodates, j = bedrooms, k = bathrooms, l = cleaning fee multiplier, and m = no. of listings for current host*
+
+###**If you were renting out a 1 bedroom, 1 bath, which could accommodate a couple of 2, charge a flat $100 cleaning fee, and had no prior hostings... you could reasonably charge about $124.58 USD.** This breaks with data available from insideairbnb.com, which estimates Nola's average price as $181.00. 
+
+#II. Airbnb Pricing within the Milan Neighborhood:
+
+Now, we want to specifically assess and test our model in a specific borough of Nola- Milan. Here's a Wikipedia link to give you some context: https://en.wikipedia.org/wiki/Milan,_New_Orleans. We can implement the same model specifications and treat the New Orleans overall data as a training set, with this as a test set. 
+
+First, some brief data management:
+```{r echo=FALSE}
+listings_milan <- df_cleaned[df_cleaned$neighbourhood_cleansed == 'Milan',]
+sapply(listings_milan, class)
+```
+
+I selected our baseline data set, 'df_cleaned', from before with only the neighborhood values equivalent to 'Milan.' However, we still need to conduct our imputation and compile this subset based on the same procedures and packages from before. 
+```{r include=FALSE}
+milan_mis <- prodNA(listings_milan, noNA = 0.1)
+temp <- mice(milan_mis,m=5,maxit=50,meth='pmm',seed=500)
+milan <- complete(temp, 1)
+sapply(milan, class)
+```
+
+## Visualization:
+Let's inspect the same variables within our subset to ensure our model can be replicated or 'tested' on these data. First, let's produce an updated correlation matrix:
+```{r echo=FALSE}
+num_imp_milan <- milan[c("host_listings_count", "accommodates", "beds", "bedrooms", "bathrooms", "cleaning_fee",
+                       "review_scores_rating", "price")]
+num_imp.cor_milan <- cor(num_imp_milan)
+ggcorrplot(num_imp.cor_milan, hc.order = TRUE, type = "lower",
+   lab = TRUE, insig = "blank")
+```
+
+Alot of the same relationships hold: price moderately correlates with expected guest total, or accommodations, (*r* = 0.50), number of bedrooms (*r* = 0.55), bathrooms (*r* = 0.62), but not with host listings (*r* = -0.04) or cleaning fee (*r* = 0.33) as before. 
+
+```{r echo=FALSE}
+milan_price_acc <- ggplot(data=milan, aes(x=accommodates, y=price)) +
+  geom_bar(stat="identity", fill="steelblue")+
+  theme_minimal()
+print(milan_price_acc + ggtitle("Figure 4. Price by Expected Guest totals: Milan, New Orleans, LA"))
+```
+
+Some strange things happening in our distribution, but the data are what they are. It's likely due to the pure lack of rentals for 1 or 5 people in this specific neighborhood, so on second thought, no big deal. 
+
+Let's keep looking. 
+
+```{r echo=FALSE}
+milan_price_brs <- ggplot(data=milan, aes(x=bedrooms, y=price)) +
+  geom_bar(stat="identity", fill="steelblue")+
+  theme_minimal()
+print(milan_price_brs + ggtitle("Figure 5. Bedrooms by Expected Guest totals: Milan, New Orleans, LA"))
+```
+
+And finally, let's look at any relationship with bathrooms, the strongest correlate with price so far in our analysis:
+```{r echo=FALSE}
+milan_price_bath <- ggplot(data=milan, aes(x=bathrooms, y=price)) +
+  geom_bar(stat="identity", fill="steelblue")+
+  theme_minimal()
+print(milan_price_bath + ggtitle("Figure 6. Bathrooms by Expected Guest totals: Milan, New Orleans, LA"))
+```
+
+Lots of 1 bathroom rentals in Milan, with what seems like the highest prices. 
+
+## Milan-specific Linear Models: 
+
+With significant variables from our second correlation matrix, we will begin to model our pricing data for Milan:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+mod_milan <- lm(price ~ accommodates + bedrooms + bathrooms, data = milan)
+summary(mod_milan)
+```
+
+```{r include=FALSE}
+# Predict on full data: p
+p <- predict(mod_milan, milan)
+
+# Compute errors: error
+error <- p - milan[["price"]]
+```
+with an RMSE = 
+```{r echo=FALSE}
+# Calculate RMSE
+sqrt(mean(error ^ 2))
+```
+Our model has improved from our full-city modelling efforts. The adjusted R-squared value improved by 7% and our root mean squared error went from 127.5 to 84.5 on fewer data. 
+
+That's just dandy. But what of the parameter coefficients to make pricing *predictions?* 
+
+Our final model will take the form:
+$$Y = 34.8X_i + 79.9X_j$$
+*letting i = number of bedrooms, j = number of bathrooms*
+
+So, I might recommend my friend, who's considering renting out two 1-bedrooom, 1-bathroom units, to charge about: 34.8(1) + 79.9(1) + 77.4 (average cleaning fee for neighborhood - amenable to host desired fee) = **$192.10** 
+
+##  Take-aways: 
+
+**1) Within Milan of New Orleans, bathrooms - not number of bedrooms, expected guest total or even your *ratings*- most explained variation in price. For every 1 additional bathroom, hosts charge almost an extra $80.00 dollars.**
+
+**2) Our milan-specifc model improved (in terms of R-squared and model explainability of variance) when given the same parameters, *but* the same variables were not significant/included.**
+
+**3) We have a set of variables/priors to start out with when modeling at prices in other cities! (Future app idea...?)**
