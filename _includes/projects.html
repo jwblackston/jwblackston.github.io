@@ -1,9 +1,0 @@
-<h1 class="post-title">Projects</h1>
-{% for project in site.projects %}
-<div class="project">
-<a href="{{ project.url }}"><img src="/assets/images/projects/{{ project.image }}" alt="{{ project.title }}" width="200" height="150"></a>
-<h1><a href="{{ project.url }}">{{ project.title }}</a></h1>
-<p>{{ project.description }}</p>
-<div style="clear: both;"></div>
-</div>
-{% endfor %}

@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.4.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Walker Blackston">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Predicting Movie Ratings in Keras - Model Tuning:  We trained a neural network with 4 layers on the Keras IMDB data set in order to predict movie ratings from random training data We reached a local minimum of validation loss and model accuracy of 17% and 94%, respectively.
+ We posited a change in:
+  1) Number of tensors/layers
+2) Units per tensor
+3) Parameters of model evaluation/activation that may improve our model&rsquo;s predictive power.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/imdb-rating-prediction-models-v20/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#4caf50">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.min.7dd90def5016c13c0f90c2d17b2f5d5c.css">
+
+  
+
+  
+  
+  
+
+  
+
+  
+
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/imdb-rating-prediction-models-v20/">
+
+  
+  
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Walker Blackston">
+  <meta property="og:url" content="/post/imdb-rating-prediction-models-v20/">
+  <meta property="og:title" content="Imdb Rating Prediction Models V20 | Walker Blackston">
+  <meta property="og:description" content="Predicting Movie Ratings in Keras - Model Tuning:  We trained a neural network with 4 layers on the Keras IMDB data set in order to predict movie ratings from random training data We reached a local minimum of validation loss and model accuracy of 17% and 94%, respectively.
+ We posited a change in:
+  1) Number of tensors/layers
+2) Units per tensor
+3) Parameters of model evaluation/activation that may improve our model&rsquo;s predictive power."><meta property="og:image" content="/img/icon-192.png">
+  <meta property="twitter:image" content="/img/icon-192.png"><meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2019-08-16T11:43:24&#43;01:00">
+  
+  <meta property="article:modified_time" content="2019-08-16T11:43:24&#43;01:00">
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title>Imdb Rating Prediction Models V20 | Walker Blackston</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Walker Blackston</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>About</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/cv.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Imdb Rating Prediction Models V20</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2019-08-16 11:43:24 &#43;0100 BST" itemprop="datePublished">
+<meta content="2019-08-16 11:43:24 &#43;0100 BST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Aug 16, 2019</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    7 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/imdb-rating-prediction-models-v20/&amp;text=Imdb%20Rating%20Prediction%20Models%20V20" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/imdb-rating-prediction-models-v20/&amp;t=Imdb%20Rating%20Prediction%20Models%20V20" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Imdb%20Rating%20Prediction%20Models%20V20&amp;body=/post/imdb-rating-prediction-models-v20/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/imdb-rating-prediction-models-v20/&amp;title=Imdb%20Rating%20Prediction%20Models%20V20" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Imdb%20Rating%20Prediction%20Models%20V20%20/post/imdb-rating-prediction-models-v20/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/imdb-rating-prediction-models-v20/&amp;title=Imdb%20Rating%20Prediction%20Models%20V20" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h1 id="predicting-movie-ratings-in-keras-model-tuning">Predicting Movie Ratings in Keras - Model Tuning:</h1>
+
+<ul>
+<li>We trained a neural network with 4 layers on the Keras IMDB data set in order to predict movie ratings from random training data</li>
+
+<li><p>We reached a local minimum of validation loss and model accuracy of 17% and 94%, respectively.</p></li>
+
+<li><p>We posited a change in:</p></li>
+</ul>
+
+<p>1) Number of tensors/layers</p>
+
+<p>2) Units per tensor</p>
+
+<p>3) Parameters of model evaluation/activation that may improve our model&rsquo;s predictive power.</p>
+
+<p>We will address each of these in turn, as fitting our models first will allow subsequent incremental changes <em>(rather than having to re-run models each time, which can get computationally expensive).</em></p>
+
+<h2 id="1-tweaking-hidden-layers">1)  Tweaking hidden layers:</h2>
+
+<p>This sounds more exotic than it is. We simply want to add and remove hidden layers to our initial model, monitoring changes in performance along the way.</p>
+
+<p>First, we need to re-import all of our data and pre-processing steps to ensure reproducibility:</p>
+
+<pre><code class="language-python">from keras.datasets import imdb
+
+(train_data, train_labels), (test_data, test_labels) = imdb.load_data(num_words=10000)
+
+#we need to vectorize our data:
+import numpy as np
+def vect_seq(sequences, dimension=10000):
+    # Create an all-zero matrix of shape (len(sequences), dimension)
+    results = np.zeros((len(sequences), dimension))
+    for i, sequence in enumerate(sequences):
+        results[i, sequence] = 1. # set specific indices of results[i] to 1s
+    return results
+
+# Our vectorized training data
+x_train = vect_seq(train_data)
+# Our vectorized test data
+x_test = vect_seq(test_data)
+
+y_train = np.asarray(train_labels).astype('float32')
+y_test = np.asarray(test_labels).astype('float32')
+</code></pre>
+
+<pre><code>Using TensorFlow backend.
+WARNING: Logging before flag parsing goes to stderr.
+W0714 12:34:16.196576 4322899392 deprecation_wrapper.py:118] From /Users/walker/anaconda3/lib/python3.7/site-packages/tensorflow/__init__.py:98: The name tf.AUTO_REUSE is deprecated. Please use tf.compat.v1.AUTO_REUSE instead.
+
+W0714 12:34:16.197201 4322899392 deprecation_wrapper.py:118] From /Users/walker/anaconda3/lib/python3.7/site-packages/tensorflow/__init__.py:98: The name tf.AttrValue is deprecated. Please use tf.compat.v1.AttrValue instead.
+
+W0714 12:34:16.197646 4322899392 deprecation_wrapper.py:118] From /Users/walker/anaconda3/lib/python3.7/site-packages/tensorflow/__init__.py:98: The name tf.COMPILER_VERSION is deprecated. Please use tf.version.COMPILER_VERSION instead.
+
+W0714 12:34:16.198417 4322899392 deprecation_wrapper.py:118] From /Users/walker/anaconda3/lib/python3.7/site-packages/tensorflow/__init__.py:98: The name tf.CXX11_ABI_FLAG is deprecated. Please use tf.sysconfig.CXX11_ABI_FLAG instead.
+
+W0714 12:34:16.198928 4322899392 deprecation_wrapper.py:118] From /Users/walker/anaconda3/lib/python3.7/site-packages/tensorflow/__init__.py:98: The name tf.ConditionalAccumulator is deprecated. Please use tf.compat.v1.ConditionalAccumulator instead.
+</code></pre>
+
+<pre><code class="language-python">from keras import models
+from keras import layers
+from keras import optimizers
+from keras import losses
+from keras import metrics
+import matplotlib.pyplot as plt
+</code></pre>
+
+<p><em>Model with n+1 layers:</em></p>
+
+<pre><code class="language-python">mod_3L = models.Sequential()
+
+mod_3L.add(layers.Dense(16, activation='relu', input_shape=(10000,)))
+mod_3L.add(layers.Dense(16, activation='relu'))
+mod_3L.add(layers.Dense(16, activation='relu')) #additional dense hidden layer with 16 units
+mod_3L.add(layers.Dense(1, activation='sigmoid'))
+</code></pre>
+
+<pre><code class="language-python">#compile:
+mod_3L.compile(optimizer='rmsprop',
+    loss='binary_crossentropy',
+    metrics=['accuracy'])
+</code></pre>
+
+<pre><code>W0714 12:34:28.305108 4322899392 deprecation_wrapper.py:118] From /Users/walker/anaconda3/lib/python3.7/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+W0714 12:34:28.324115 4322899392 deprecation.py:323] From /Users/walker/anaconda3/lib/python3.7/site-packages/tensorflow_core/python/ops/nn_impl.py:182: add_dispatch_support.&lt;locals&gt;.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+</code></pre>
+
+<pre><code class="language-python">mod_3L.fit(x_train, y_train, epochs=4, batch_size=512)
+
+results_3L = mod_3L.evaluate(x_test, y_test)
+</code></pre>
+
+<pre><code>Epoch 1/4
+25000/25000 [==============================] - 2s 80us/step - loss: 0.1382 - acc: 0.9502
+Epoch 2/4
+25000/25000 [==============================] - 2s 79us/step - loss: 0.1224 - acc: 0.9568
+Epoch 3/4
+25000/25000 [==============================] - 2s 79us/step - loss: 0.1047 - acc: 0.9622
+Epoch 4/4
+25000/25000 [==============================] - 2s 79us/step - loss: 0.0892 - acc: 0.9690
+25000/25000 [==============================] - 1s 47us/step
+</code></pre>
+
+<pre><code class="language-python">results_3L
+</code></pre>
+
+<pre><code>[0.42676588655471803, 0.86348]
+</code></pre>
+
+<pre><code class="language-python">mod_3L.predict(x_test)
+</code></pre>
+
+<pre><code>array([[0.0731495 ],
+       [0.99997604],
+       [0.5084689 ],
+       ...,
+       [0.09003073],
+       [0.01447853],
+       [0.7448582 ]], dtype=float32)
+</code></pre>
+
+<ul>
+<li><em>Looks like we have a moderate loss of model accuracy, with a wider range of predictive point estimates for individual reviews. We can conclude adding a hidden layer does not likely improve this model.</em></li>
+</ul>
+
+<h1 id="1-1-removing-a-hidden-layer">1.1. Removing a hidden layer:</h1>
+
+<pre><code class="language-python">mod_1L = models.Sequential()
+
+mod_1L.add(layers.Dense(16, activation='relu', input_shape=(10000,))) #just 1 dense, 16 unit layer 
+mod_1L.add(layers.Dense(1, activation='sigmoid'))
+</code></pre>
+
+<pre><code class="language-python">mod_1L.compile(optimizer='rmsprop',
+    loss='binary_crossentropy',
+    metrics=['accuracy'])
+</code></pre>
+
+<pre><code class="language-python">mod_1L.fit(x_train, y_train, epochs=4, batch_size=512)
+
+results_1L = mod_1L.evaluate(x_test, y_test)
+</code></pre>
+
+<pre><code>Epoch 1/4
+25000/25000 [==============================] - 2s 88us/step - loss: 0.1713 - acc: 0.9412
+Epoch 2/4
+25000/25000 [==============================] - 2s 84us/step - loss: 0.1531 - acc: 0.9486
+Epoch 3/4
+25000/25000 [==============================] - 2s 84us/step - loss: 0.1388 - acc: 0.9545
+Epoch 4/4
+25000/25000 [==============================] - 2s 84us/step - loss: 0.1274 - acc: 0.9574
+25000/25000 [==============================] - 1s 30us/step
+</code></pre>
+
+<pre><code class="language-python">results_1L
+</code></pre>
+
+<pre><code>[0.3138607511281967, 0.8792]
+</code></pre>
+
+<pre><code class="language-python">mod_1L.predict(x_test)
+</code></pre>
+
+<pre><code>array([[0.15594196],
+       [0.9999641 ],
+       [0.70080477],
+       ...,
+       [0.12436602],
+       [0.04793406],
+       [0.61118674]], dtype=float32)
+</code></pre>
+
+<ul>
+<li><em>Little to no impact to our model accuracy, however removing n=1 dense layer significantly reduced the variance (at least superficially), between the highest and lowest predictive accuracy of our neural net on individual reviews.</em></li>
+</ul>
+
+<h3 id="looks-like-changing-our-layers-has-little-to-no-impact-on-our-overall-model-accuracy-prioritizing-simplicity-lets-stick-to-our-mod-1l-with-one-dense-layer-and-now-tweak-tensor-units">Looks like changing our layers has little to no impact on our overall model accuracy. Prioritizing simplicity, lets stick to our &lsquo;mod_1L&rsquo; with one dense layer, and now tweak tensor units:</h3>
+
+<h1 id="2-unit-per-layer-differentiation">2) Unit-per-Layer Differentiation:</h1>
+
+<p>A fancy way to phrase <strong>&lsquo;we will now tweak the number of hidden units will be present in each layer&rsquo;</strong></p>
+
+<pre><code class="language-python">mod_1L_32u = models.Sequential()
+
+mod_1L_32u.add(layers.Dense(32, activation='relu', input_shape=(10000, )))
+mod_1L_32u.add(layers.Dense(1, activation='sigmoid'))
+</code></pre>
+
+<pre><code class="language-python">mod_1L_32u.compile(optimizer='rmsprop',
+                  loss='binary_crossentropy',
+                  metrics=['accuracy'])
+</code></pre>
+
+<pre><code class="language-python">mod_1L_32u.fit(x_train, y_train, epochs=4, batch_size=512)
+
+results_1L_32u = mod_1L_32u.evaluate(x_test, y_test)
+</code></pre>
+
+<pre><code>Epoch 1/4
+25000/25000 [==============================] - 2s 92us/step - loss: 0.4251 - acc: 0.8314
+Epoch 2/4
+25000/25000 [==============================] - 2s 86us/step - loss: 0.2520 - acc: 0.9122
+Epoch 3/4
+25000/25000 [==============================] - 2s 86us/step - loss: 0.1993 - acc: 0.9292
+Epoch 4/4
+25000/25000 [==============================] - 2s 86us/step - loss: 0.1696 - acc: 0.9422
+25000/25000 [==============================] - 1s 32us/step
+</code></pre>
+
+<pre><code class="language-python">results_1L_32u
+</code></pre>
+
+<pre><code>[0.2895566564083099, 0.88496]
+</code></pre>
+
+<ul>
+<li>*Interesting. We see some general improvement to our model accuracy (around 2%). We could stop, here, but let&rsquo;s exhaust all possibilities to see if this is just a local maximum of accuracy or <strong>global.</strong> Can we improve further&hellip;?*</li>
+</ul>
+
+<h1 id="2-1-64-unit-hidden-layers">2.1. 64 Unit Hidden Layers:</h1>
+
+<pre><code class="language-python">mod_1L_64u = models.Sequential()
+
+mod_1L_64u.add(layers.Dense(32, activation='relu', input_shape=(10000, )))
+mod_1L_64u.add(layers.Dense(1, activation='sigmoid'))
+</code></pre>
+
+<pre><code class="language-python">mod_1L_64u.compile(optimizer='rmsprop',
+                  loss='binary_crossentropy',
+                  metrics=['accuracy'])
+</code></pre>
+
+<pre><code class="language-python">mod_1L_64u.fit(x_train, y_train, epochs=4, batch_size=512)
+
+results_1L_64u = mod_1L_64u.evaluate(x_test, y_test)
+</code></pre>
+
+<pre><code>Epoch 1/4
+25000/25000 [==============================] - 2s 93us/step - loss: 0.4199 - acc: 0.8327
+Epoch 2/4
+25000/25000 [==============================] - 2s 86us/step - loss: 0.2522 - acc: 0.9114
+Epoch 3/4
+25000/25000 [==============================] - 2s 86us/step - loss: 0.1995 - acc: 0.9303
+Epoch 4/4
+25000/25000 [==============================] - 2s 86us/step - loss: 0.1693 - acc: 0.9424
+25000/25000 [==============================] - 1s 32us/step
+</code></pre>
+
+<pre><code class="language-python">results_1L_64u
+</code></pre>
+
+<pre><code>[0.2949124105834961, 0.88192]
+</code></pre>
+
+<pre><code class="language-python">mod_1L_64u.predict(x_test)
+</code></pre>
+
+<pre><code>array([[0.19108787],
+       [0.99987483],
+       [0.7720454 ],
+       ...,
+       [0.10865086],
+       [0.06636879],
+       [0.51513207]], dtype=float32)
+</code></pre>
+
+<ul>
+<li><p>Little different from our previous network. Let&rsquo;s stick to our &lsquo;simpler is better&rsquo; heuristic, thereby sticking to 32 units within 1 hidden layer.</p></li>
+
+<li><p>Now, we can tweak different activation parameters and monitor changes as before. <strong>Let&rsquo;s do this now:</strong></p></li>
+</ul>
+
+<h1 id="3-model-compiling-and-activation-parameters">3) Model Compiling and Activation Parameters:</h1>
+
+<p>*First, we evaluate our model using a different loss function. To avoid the technical details, this is the function that will specify how we descend down our gradient for tensor weights.</p>
+
+<p><strong>To be even less technical, changing this parameter changes how our network &lsquo;learns&rsquo; and updates our models.</strong></p>
+
+<pre><code class="language-python">#chaning our compiler for mod_1L_32u to an 'MSE' or mean squared error loss function:
+mod_1L_32u.compile(optimizer='rmsprop',
+                  loss='mse',
+                  metrics=['accuracy'])
+</code></pre>
+
+<pre><code class="language-python">mod_1L_32u.fit(x_train, y_train, epochs=4, batch_size=512)
+
+results_1L_32u_fit2 = mod_1L_32u.evaluate(x_test, y_test)
+</code></pre>
+
+<pre><code>Epoch 1/4
+25000/25000 [==============================] - 2s 92us/step - loss: 0.0432 - acc: 0.9461
+Epoch 2/4
+25000/25000 [==============================] - 2s 85us/step - loss: 0.0355 - acc: 0.9585
+Epoch 3/4
+25000/25000 [==============================] - 2s 85us/step - loss: 0.0326 - acc: 0.9641
+Epoch 4/4
+25000/25000 [==============================] - 2s 85us/step - loss: 0.0289 - acc: 0.9691
+25000/25000 [==============================] - 1s 31us/step
+</code></pre>
+
+<pre><code class="language-python">results_1L_32u_fit2
+</code></pre>
+
+<pre><code>[0.09572549975037575, 0.8724]
+</code></pre>
+
+<pre><code class="language-python">mod_1L_32u.predict(x_test)
+</code></pre>
+
+<pre><code>array([[0.12358373],
+       [0.99981403],
+       [0.8463329 ],
+       ...,
+       [0.2399565 ],
+       [0.05467173],
+       [0.76879334]], dtype=float32)
+</code></pre>
+
+<ul>
+<li>We can see a moderate, perhaps negative impact on model performance. <strong>Let&rsquo;s keep tweaking. We will now try an alternative to relu, or &ldquo;rectified linear unit&rdquo; activation.</strong></li>
+</ul>
+
+<pre><code class="language-python">mod_1L_32u_tanh = models.Sequential()
+
+mod_1L_32u_tanh.add(layers.Dense(32, activation='tanh', input_shape=(10000, )))
+mod_1L_32u_tanh.add(layers.Dense(1, activation='sigmoid'))
+</code></pre>
+
+<pre><code class="language-python">mod_1L_32u_tanh.compile(optimizer='rmsprop', #return compiler to original form
+                  loss='binary_crossentropy', 
+                  metrics=['accuracy'])
+</code></pre>
+
+<pre><code class="language-python">mod_1L_32u_tanh.fit(x_train, y_train, epochs=4, batch_size=512)
+
+results_1L_32u_fit3 = mod_1L_32u_tanh.evaluate(x_test, y_test)
+</code></pre>
+
+<pre><code>Epoch 1/4
+25000/25000 [==============================] - 2s 84us/step - loss: 0.1381 - acc: 0.9507
+Epoch 2/4
+25000/25000 [==============================] - 2s 84us/step - loss: 0.1213 - acc: 0.9587
+Epoch 3/4
+25000/25000 [==============================] - 2s 84us/step - loss: 0.1087 - acc: 0.9629
+Epoch 4/4
+25000/25000 [==============================] - 2s 84us/step - loss: 0.0994 - acc: 0.9660
+25000/25000 [==============================] - 1s 33us/step
+</code></pre>
+
+<pre><code class="language-python">results_1L_32u_fit3
+</code></pre>
+
+<pre><code>[0.4123829656982422, 0.86648]
+</code></pre>
+
+<h2 id="our-final-model-to-predict-movie-reviews-in-the-imdb-database-therefore-is-our-simplest-model-1-dense-hidden-layer-of-32-units-compiled-with-a-binary-cross-entropy-loss-function-and-a-non-linear-relu-or-rectified-linear-unit-activation-function"><em>Our final model to predict movie reviews in the IMDB database, therefore, is our simplest model: 1 dense hidden layer of 32 units, compiled with a binary cross entropy loss function, and a non-linear (&lsquo;relu&rsquo;, or rectified linear unit) activation function.</em></h2>
+
+<pre><code class="language-python">print('With a final model accuracy of: ' + str(results_1L_32u[1]))
+</code></pre>
+
+<pre><code>With a final model accuracy of: 0.88496
+</code></pre>
+
+    </div>
+
+    
+
+
+    
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+      
+      <img class="portrait mr-3" src="/authors/admin/avatar_hu949f3ebb3444a38c1d213c8ca6e9c58e_34303_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="/">Walker Blackston</a></h5>
+      <h6 class="card-subtitle">PhD Student in Epidemiology and Biostatistics</h6>
+      <p class="card-text" itemprop="description">I am a first year PhD student in Epidemiology and Biostatistics at Tulane University. My research interests lie at the intersection of epidemiological methods, causal inference, nutrition, and cardiometabolic kidney diseases.</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/#contact" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/BlackstonWalker" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/jwblackston" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/r.min.js"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.4e51017b38c7ebaadd7e25fc9503f88c.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    &copy; Walker Blackston 2019 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
