@@ -84,7 +84,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academic.min.7dd90def5016c13c0f90c2d17b2f5d5c.css">
+  <link rel="stylesheet" href="/css/academic.min.55f231abdf3d92c1f241c155e5ccbe57.css">
 
   
 
@@ -569,8 +569,7 @@ def build_model():
 <p>Since these clusters could be relatively small, we need to group by thpose data with the <strong>highest variance</strong></p>
 
 <ul>
-<li>K-fold validation implies splitting our data into some k= number of clusters of data, running K identical models, then spitting out an averaged score of performance across models</li>
-</ul>
+<li><p>K-fold validation implies splitting our data into some k= number of clusters of data, running K identical models, then spitting out an averaged score of performance across models</p>
 
 <pre><code class="language-python">#k val set-up:
 import numpy as np
@@ -581,54 +580,50 @@ num_epochs = 100
 all_scores = []
 
 for i in range(k):
-    print('processing fold #', i)
-    # Prepare the validation data: data from partition # k
-    val_data = train_data[i * num_val_samples: (i + 1) * num_val_samples]
-    val_targets = train_targets[i * num_val_samples: (i + 1) * num_val_samples]
+print('processing fold #', i)
+# Prepare the validation data: data from partition # k
+val_data = train_data[i * num_val_samples: (i + 1) * num_val_samples]
+val_targets = train_targets[i * num_val_samples: (i + 1) * num_val_samples]
     
-    # Prepare the training data: data from all other partitions
-    partial_train_data = np.concatenate(
-        [train_data[:i * num_val_samples],
-        train_data[(i + 1) * num_val_samples:]],
-        axis=0)
-    partial_train_targets = np.concatenate(
-        [train_targets[:i * num_val_samples],
-        train_targets[(i + 1) * num_val_samples:]],
-        axis=0)
+# Prepare the training data: data from all other partitions
+partial_train_data = np.concatenate(
+    [train_data[:i * num_val_samples],
+    train_data[(i + 1) * num_val_samples:]],
+    axis=0)
+partial_train_targets = np.concatenate(
+    [train_targets[:i * num_val_samples],
+    train_targets[(i + 1) * num_val_samples:]],
+    axis=0)
 
-    # Build the Keras model (already compiled)
-    model = build_model()
+# Build the Keras model (already compiled)
+model = build_model()
 
-    # Train the model (in silent mode, verbose=0)
-    model.fit(partial_train_data, partial_train_targets,
-        epochs=num_epochs, batch_size=1, verbose=0)
+# Train the model (in silent mode, verbose=0)
+model.fit(partial_train_data, partial_train_targets,
+    epochs=num_epochs, batch_size=1, verbose=0)
     
-    # Evaluate the model on the validation data
-    val_mse, val_mae = model.evaluate(val_data, val_targets, verbose=0)
-    all_scores.append(val_mae)
+# Evaluate the model on the validation data
+val_mse, val_mae = model.evaluate(val_data, val_targets, verbose=0)
+all_scores.append(val_mae)
 </code></pre>
 
-<pre><code>W0715 11:28:34.739506 4610311616 deprecation_wrapper.py:118] From /Users/walker/anaconda3/lib/python3.7/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+<p>W0715 11:28:34.739506 4610311616 deprecation_wrapper.py:118] From /Users/walker/anaconda3/lib/python3.7/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.</p>
 
-
-
-processing fold # 0
+<p>processing fold # 0
 processing fold # 1
 processing fold # 2
-processing fold # 3
-</code></pre>
+processing fold # 3</p>
 
 <pre><code class="language-python">all_scores
 </code></pre>
 
-<pre><code>[2.4400245529590268]
-</code></pre>
+<p>[2.4400245529590268]</p>
 
 <pre><code class="language-python">np.mean(all_scores)
 </code></pre>
 
-<pre><code>2.4400245529590268
-</code></pre>
+<p>2.4400245529590268</p></li>
+</ul>
 
 <p>This means that we are off by about $2,440 in our prediction of price. Not insignificant for housing costs in 1970&hellip; Let&rsquo;s see what we can do to improve:</p>
 
@@ -772,7 +767,7 @@ test_mse_score, test_mae_score = model.evaluate(test_data, test_targets)
     <div class="media-body">
       <h5 class="card-title" itemprop="name"><a href="/">Walker Blackston</a></h5>
       <h6 class="card-subtitle">PhD Student in Epidemiology and Biostatistics</h6>
-      <p class="card-text" itemprop="description">I am a first year PhD student in Epidemiology and Biostatistics at Tulane University. My research interests lie at the intersection of epidemiological methods, causal inference, nutrition, and cardiometabolic kidney diseases.</p>
+      <p class="card-text" itemprop="description">I am a first year PhD student in Epidemiology and Biostatistics at Tulane University. My research interests lie at the intersection of epidemiological methods, causal inference, nutrition, and cardiometabolic kidney diseases. X</p>
       <ul class="network-icon" aria-hidden="true">
         
           
@@ -944,7 +939,7 @@ test_mse_score, test_mae_score = model.evaluate(test_data, test_targets)
     
     
     
-    <script src="/js/academic.min.4e51017b38c7ebaadd7e25fc9503f88c.js"></script>
+    <script src="/js/academic.min.16bbb3750feb7244c9bc409a5a4fe678.js"></script>
 
     
 

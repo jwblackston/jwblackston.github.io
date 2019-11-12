@@ -500,22 +500,17 @@ gv_no.head()
 &lt;/div&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Now, we have a filtered data set of:&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;Now, we have a filtered data set of:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(len(gv_no)) #total number of reports
 
 len(gv_no)/5 #number of years captured in our dataset range
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;3153
+&lt;p&gt;3153&lt;/p&gt;
 
-
-
-
-
-630.6
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;630.6&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;observations. So that means from 2013 to 2018, there were roughly 3,153 reports (which equates to roughly 631 per year) of gun violence to some degree in the New Orleans metro area. What does that mean for yearly breakdowns? What of the nature of these reports and what was going on in the country or area during spikes? Lastly, how do these compare to national averages? All of these questions will be the focus of the rest of this report.&lt;/p&gt;
 
@@ -1333,8 +1328,7 @@ def build_model():
 &lt;p&gt;Since these clusters could be relatively small, we need to group by thpose data with the &lt;strong&gt;highest variance&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;K-fold validation implies splitting our data into some k= number of clusters of data, running K identical models, then spitting out an averaged score of performance across models&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;K-fold validation implies splitting our data into some k= number of clusters of data, running K identical models, then spitting out an averaged score of performance across models&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#k val set-up:
 import numpy as np
@@ -1345,54 +1339,50 @@ num_epochs = 100
 all_scores = []
 
 for i in range(k):
-    print(&#39;processing fold #&#39;, i)
-    # Prepare the validation data: data from partition # k
-    val_data = train_data[i * num_val_samples: (i + 1) * num_val_samples]
-    val_targets = train_targets[i * num_val_samples: (i + 1) * num_val_samples]
+print(&#39;processing fold #&#39;, i)
+# Prepare the validation data: data from partition # k
+val_data = train_data[i * num_val_samples: (i + 1) * num_val_samples]
+val_targets = train_targets[i * num_val_samples: (i + 1) * num_val_samples]
     
-    # Prepare the training data: data from all other partitions
-    partial_train_data = np.concatenate(
-        [train_data[:i * num_val_samples],
-        train_data[(i + 1) * num_val_samples:]],
-        axis=0)
-    partial_train_targets = np.concatenate(
-        [train_targets[:i * num_val_samples],
-        train_targets[(i + 1) * num_val_samples:]],
-        axis=0)
+# Prepare the training data: data from all other partitions
+partial_train_data = np.concatenate(
+    [train_data[:i * num_val_samples],
+    train_data[(i + 1) * num_val_samples:]],
+    axis=0)
+partial_train_targets = np.concatenate(
+    [train_targets[:i * num_val_samples],
+    train_targets[(i + 1) * num_val_samples:]],
+    axis=0)
 
-    # Build the Keras model (already compiled)
-    model = build_model()
+# Build the Keras model (already compiled)
+model = build_model()
 
-    # Train the model (in silent mode, verbose=0)
-    model.fit(partial_train_data, partial_train_targets,
-        epochs=num_epochs, batch_size=1, verbose=0)
+# Train the model (in silent mode, verbose=0)
+model.fit(partial_train_data, partial_train_targets,
+    epochs=num_epochs, batch_size=1, verbose=0)
     
-    # Evaluate the model on the validation data
-    val_mse, val_mae = model.evaluate(val_data, val_targets, verbose=0)
-    all_scores.append(val_mae)
+# Evaluate the model on the validation data
+val_mse, val_mae = model.evaluate(val_data, val_targets, verbose=0)
+all_scores.append(val_mae)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;W0715 11:28:34.739506 4610311616 deprecation_wrapper.py:118] From /Users/walker/anaconda3/lib/python3.7/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+&lt;p&gt;W0715 11:28:34.739506 4610311616 deprecation_wrapper.py:118] From /Users/walker/anaconda3/lib/python3.7/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.&lt;/p&gt;
 
-
-
-processing fold # 0
+&lt;p&gt;processing fold # 0
 processing fold # 1
 processing fold # 2
-processing fold # 3
-&lt;/code&gt;&lt;/pre&gt;
+processing fold # 3&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;all_scores
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;[2.4400245529590268]
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;[2.4400245529590268]&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;np.mean(all_scores)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;2.4400245529590268
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2.4400245529590268&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;This means that we are off by about $2,440 in our prediction of price. Not insignificant for housing costs in 1970&amp;hellip; Let&amp;rsquo;s see what we can do to improve:&lt;/p&gt;
 
@@ -1852,8 +1842,7 @@ Epoch 4/4
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-&lt;li&gt;We can see a moderate, perhaps negative impact on model performance. &lt;strong&gt;Let&amp;rsquo;s keep tweaking. We will now try an alternative to relu, or &amp;ldquo;rectified linear unit&amp;rdquo; activation.&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;We can see a moderate, perhaps negative impact on model performance. &lt;strong&gt;Let&amp;rsquo;s keep tweaking. We will now try an alternative to relu, or &amp;ldquo;rectified linear unit&amp;rdquo; activation.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;mod_1L_32u_tanh = models.Sequential()
 
@@ -1862,8 +1851,8 @@ mod_1L_32u_tanh.add(layers.Dense(1, activation=&#39;sigmoid&#39;))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;mod_1L_32u_tanh.compile(optimizer=&#39;rmsprop&#39;, #return compiler to original form
-                  loss=&#39;binary_crossentropy&#39;, 
-                  metrics=[&#39;accuracy&#39;])
+              loss=&#39;binary_crossentropy&#39;, 
+              metrics=[&#39;accuracy&#39;])
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;mod_1L_32u_tanh.fit(x_train, y_train, epochs=4, batch_size=512)
@@ -1871,22 +1860,21 @@ mod_1L_32u_tanh.add(layers.Dense(1, activation=&#39;sigmoid&#39;))
 results_1L_32u_fit3 = mod_1L_32u_tanh.evaluate(x_test, y_test)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;Epoch 1/4
-25000/25000 [==============================] - 2s 84us/step - loss: 0.1381 - acc: 0.9507
-Epoch 2/4
-25000/25000 [==============================] - 2s 84us/step - loss: 0.1213 - acc: 0.9587
-Epoch 3/4
-25000/25000 [==============================] - 2s 84us/step - loss: 0.1087 - acc: 0.9629
-Epoch 4/4
-25000/25000 [==============================] - 2s 84us/step - loss: 0.0994 - acc: 0.9660
-25000/25000 [==============================] - 1s 33us/step
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Epoch &lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;4&lt;/sub&gt;
+&lt;sup&gt;25000&lt;/sup&gt;&amp;frasl;&lt;sub&gt;25000&lt;/sub&gt; [==============================] - 2s 84us/step - loss: 0.1381 - acc: 0.9507
+Epoch &lt;sup&gt;2&lt;/sup&gt;&amp;frasl;&lt;sub&gt;4&lt;/sub&gt;
+&lt;sup&gt;25000&lt;/sup&gt;&amp;frasl;&lt;sub&gt;25000&lt;/sub&gt; [==============================] - 2s 84us/step - loss: 0.1213 - acc: 0.9587
+Epoch &lt;sup&gt;3&lt;/sup&gt;&amp;frasl;&lt;sub&gt;4&lt;/sub&gt;
+&lt;sup&gt;25000&lt;/sup&gt;&amp;frasl;&lt;sub&gt;25000&lt;/sub&gt; [==============================] - 2s 84us/step - loss: 0.1087 - acc: 0.9629
+Epoch &lt;sup&gt;4&lt;/sup&gt;&amp;frasl;&lt;sub&gt;4&lt;/sub&gt;
+&lt;sup&gt;25000&lt;/sup&gt;&amp;frasl;&lt;sub&gt;25000&lt;/sub&gt; [==============================] - 2s 84us/step - loss: 0.0994 - acc: 0.9660
+&lt;sup&gt;25000&lt;/sup&gt;&amp;frasl;&lt;sub&gt;25000&lt;/sub&gt; [==============================] - 1s 33us/step&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;results_1L_32u_fit3
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;[0.4123829656982422, 0.86648]
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;[0.4123829656982422, 0.86648]&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;our-final-model-to-predict-movie-reviews-in-the-imdb-database-therefore-is-our-simplest-model-1-dense-hidden-layer-of-32-units-compiled-with-a-binary-cross-entropy-loss-function-and-a-non-linear-relu-or-rectified-linear-unit-activation-function&#34;&gt;&lt;em&gt;Our final model to predict movie reviews in the IMDB database, therefore, is our simplest model: 1 dense hidden layer of 32 units, compiled with a binary cross entropy loss function, and a non-linear (&amp;lsquo;relu&amp;rsquo;, or rectified linear unit) activation function.&lt;/em&gt;&lt;/h2&gt;
 
@@ -2366,20 +2354,19 @@ Epoch 4/4
 &lt;h3 id=&#34;now-we-would-like-to-implement-our-model-using-new-data&#34;&gt;Now, we would like to implement our model using new data:&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;What are the likelihoods of generating positive reviews? Use &amp;lsquo;predict&amp;rsquo; function from Keras:&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;What are the likelihoods of generating positive reviews? Use &amp;lsquo;predict&amp;rsquo; function from Keras:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;model.predict(x_test)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;array([[0.13455817],
+&lt;p&gt;array([[0.13455817],
        [0.99970734],
        [0.2682383 ],
-       ...,
+       &amp;hellip;,
        [0.07024318],
        [0.0425705 ],
-       [0.47154084]], dtype=float32)
-&lt;/code&gt;&lt;/pre&gt;
+       [0.47154084]], dtype=float32)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;This shows a wide range of prediction accuracy- from 0.13 to upwards of 0.99.&lt;/p&gt;
 

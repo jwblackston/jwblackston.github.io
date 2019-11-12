@@ -88,7 +88,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academic.min.7dd90def5016c13c0f90c2d17b2f5d5c.css">
+  <link rel="stylesheet" href="/css/academic.min.55f231abdf3d92c1f241c155e5ccbe57.css">
 
   
 
@@ -836,8 +836,7 @@ Epoch 4/4
 </code></pre>
 
 <ul>
-<li>We can see a moderate, perhaps negative impact on model performance. <strong>Let&rsquo;s keep tweaking. We will now try an alternative to relu, or &ldquo;rectified linear unit&rdquo; activation.</strong></li>
-</ul>
+<li><p>We can see a moderate, perhaps negative impact on model performance. <strong>Let&rsquo;s keep tweaking. We will now try an alternative to relu, or &ldquo;rectified linear unit&rdquo; activation.</strong></p>
 
 <pre><code class="language-python">mod_1L_32u_tanh = models.Sequential()
 
@@ -846,8 +845,8 @@ mod_1L_32u_tanh.add(layers.Dense(1, activation='sigmoid'))
 </code></pre>
 
 <pre><code class="language-python">mod_1L_32u_tanh.compile(optimizer='rmsprop', #return compiler to original form
-                  loss='binary_crossentropy', 
-                  metrics=['accuracy'])
+              loss='binary_crossentropy', 
+              metrics=['accuracy'])
 </code></pre>
 
 <pre><code class="language-python">mod_1L_32u_tanh.fit(x_train, y_train, epochs=4, batch_size=512)
@@ -855,22 +854,21 @@ mod_1L_32u_tanh.add(layers.Dense(1, activation='sigmoid'))
 results_1L_32u_fit3 = mod_1L_32u_tanh.evaluate(x_test, y_test)
 </code></pre>
 
-<pre><code>Epoch 1/4
-25000/25000 [==============================] - 2s 84us/step - loss: 0.1381 - acc: 0.9507
-Epoch 2/4
-25000/25000 [==============================] - 2s 84us/step - loss: 0.1213 - acc: 0.9587
-Epoch 3/4
-25000/25000 [==============================] - 2s 84us/step - loss: 0.1087 - acc: 0.9629
-Epoch 4/4
-25000/25000 [==============================] - 2s 84us/step - loss: 0.0994 - acc: 0.9660
-25000/25000 [==============================] - 1s 33us/step
-</code></pre>
+<p>Epoch <sup>1</sup>&frasl;<sub>4</sub>
+<sup>25000</sup>&frasl;<sub>25000</sub> [==============================] - 2s 84us/step - loss: 0.1381 - acc: 0.9507
+Epoch <sup>2</sup>&frasl;<sub>4</sub>
+<sup>25000</sup>&frasl;<sub>25000</sub> [==============================] - 2s 84us/step - loss: 0.1213 - acc: 0.9587
+Epoch <sup>3</sup>&frasl;<sub>4</sub>
+<sup>25000</sup>&frasl;<sub>25000</sub> [==============================] - 2s 84us/step - loss: 0.1087 - acc: 0.9629
+Epoch <sup>4</sup>&frasl;<sub>4</sub>
+<sup>25000</sup>&frasl;<sub>25000</sub> [==============================] - 2s 84us/step - loss: 0.0994 - acc: 0.9660
+<sup>25000</sup>&frasl;<sub>25000</sub> [==============================] - 1s 33us/step</p>
 
 <pre><code class="language-python">results_1L_32u_fit3
 </code></pre>
 
-<pre><code>[0.4123829656982422, 0.86648]
-</code></pre>
+<p>[0.4123829656982422, 0.86648]</p></li>
+</ul>
 
 <h2 id="our-final-model-to-predict-movie-reviews-in-the-imdb-database-therefore-is-our-simplest-model-1-dense-hidden-layer-of-32-units-compiled-with-a-binary-cross-entropy-loss-function-and-a-non-linear-relu-or-rectified-linear-unit-activation-function"><em>Our final model to predict movie reviews in the IMDB database, therefore, is our simplest model: 1 dense hidden layer of 32 units, compiled with a binary cross entropy loss function, and a non-linear (&lsquo;relu&rsquo;, or rectified linear unit) activation function.</em></h2>
 
@@ -920,7 +918,7 @@ Epoch 4/4
     <div class="media-body">
       <h5 class="card-title" itemprop="name"><a href="/">Walker Blackston</a></h5>
       <h6 class="card-subtitle">PhD Student in Epidemiology and Biostatistics</h6>
-      <p class="card-text" itemprop="description">I am a first year PhD student in Epidemiology and Biostatistics at Tulane University. My research interests lie at the intersection of epidemiological methods, causal inference, nutrition, and cardiometabolic kidney diseases.</p>
+      <p class="card-text" itemprop="description">I am a first year PhD student in Epidemiology and Biostatistics at Tulane University. My research interests lie at the intersection of epidemiological methods, causal inference, nutrition, and cardiometabolic kidney diseases. X</p>
       <ul class="network-icon" aria-hidden="true">
         
           
@@ -1092,7 +1090,7 @@ Epoch 4/4
     
     
     
-    <script src="/js/academic.min.4e51017b38c7ebaadd7e25fc9503f88c.js"></script>
+    <script src="/js/academic.min.16bbb3750feb7244c9bc409a5a4fe678.js"></script>
 
     
 
