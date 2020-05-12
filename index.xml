@@ -3,76 +3,141 @@
   <channel>
     <title>Walker Blackston</title>
     <link>/</link>
-    <description>Recent content on Walker Blackston</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
-    <language>en-us</language>
-    <copyright>&amp;copy; Walker Blackston 2020</copyright>
-    <lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
-    
-	    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Recent &amp; Upcoming Talks</title>
-      <link>/talk/</link>
-      <pubDate>Sat, 01 Jun 2030 13:00:00 +0000</pubDate>
-      
-      <guid>/talk/</guid>
-      <description></description>
-    </item>
+      <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <description>Walker Blackston</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 26 May 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Walker Blackston</title>
+      <link>/</link>
+    </image>
     
     <item>
-      <title>Posts</title>
-      <link>/post/</link>
+      <title>J. Walker Blackston, python and board game novice, tries Dungeons and Dragons</title>
+      <link>/blog/j.-walker-blackston-python-and-board-game-novice-tries-dungeons-and-dragons/</link>
       <pubDate>Sun, 26 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/</guid>
-      <description></description>
+      <guid>/blog/j.-walker-blackston-python-and-board-game-novice-tries-dungeons-and-dragons/</guid>
+      <description>&lt;p&gt;Today I played roughly 4+ hours of what became my first Dungeons and Dragons campaign. High school me rolls his eyes, but he can shove it because I am both smarter and stronger than he is.&lt;/p&gt;
+&lt;p&gt;In all seriousness, I see the appeal. The genuine joy you experience when hilarious shit happens to you or your buddies ios rarely duplicated. I don&amp;rsquo;t expect to be swapping my gym membership for a D4 games budget any time soon (a local D&amp;amp;D hangout), but I&amp;rsquo;ll be damned if I didn&amp;rsquo;t have a blast and will continue with this campaign occasionally.&lt;/p&gt;
+&lt;p&gt;Importantly, this experience brought me an idea for my first &amp;ldquo;personal project&amp;rdquo; to write in python. I realized this when thinking about how traits and turns are structured. To the un-churched, nearly everything in D&amp;amp;D revolves around a series of multi-sided die. A few are 20-sided (or &amp;ldquo;d20&amp;rdquo;), where others are d6 or d4 etc., all with equal probability of rolling. These rolls dictate player traits, attack abilities, and any other special attributes related to your character arc.&lt;/p&gt;
+&lt;p&gt;One condition I&amp;rsquo;d like to play with here is the concept of &amp;ldquo;advantaged&amp;rdquo; or &amp;ldquo;disadvantaged&amp;rdquo; rolls. This simply means that when you roll 2 d20&amp;rsquo;s, you take the lower of the rolls. If you were creating a D&amp;amp;D Python game, how would you simulate these rolls and make a decision?&lt;/p&gt;
+&lt;p&gt;&#39;&amp;rsquo;&amp;rsquo; #let r_1 and r_2 be the set of possible rolls
+r_1 = list(range(1, 20, 1)
+r_2 = list(range(1, 20, 1)
+#create a function that will take in the move of both, draw randomly with equal probability for all numbers, and make a simple decision to give advantage:&lt;/p&gt;
+&lt;p&gt;import random
+import numpy as np
+def die():&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;print(&#39;Please roll: &#39;)
+roll = input()
+
+if roll != &#39;roll&#39;:
+    print(&#39;Please type &amp;quot;roll&amp;quot; to roll die&#39;) 
+
+else:
+    roll_one = list(range(1, 21))
+    roll_two = list(range(1, 21))
+
+    if roll_one &amp;gt; roll_two:
+        print(&#39;You rolled a &#39; + str(roll_one) + &#39; and &#39; + str(roll_two) + &#39;. &#39; &#39;Advantage: &#39; + str(roll_one))
+        roll = roll_one
+        return roll_one 
+    
+    elif roll_one &amp;lt; roll_two:
+        print(&#39;Disadvantage: &#39; + str(roll_two))
+        roll = roll_two
+        return roll_two   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&#39;&amp;rsquo;&amp;rsquo;
+I got the first iteration of this to run! Holy cow that felt cool. But then I got cheeky and decided to refactor. Due to some pointers from a professional, I decided to simplify and clean it up, which represents the code you see above. This has taught me several lessons: 1) always save checkpoints of successful code, and 2) if it ain&amp;rsquo;t broke, don&amp;rsquo;t fix it. So now I will be refactoring &lt;em&gt;this&lt;/em&gt; code to make it run again.&lt;/p&gt;
+&lt;p&gt;Here goes nothin&amp;rsquo;&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>Publications</title>
-      <link>/publication/</link>
-      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/publication/</guid>
-      <description></description>
+      <title>J. Walker Blackston, aspiring data scientist, Designs summer curriculum</title>
+      <link>/blog/j.-walker-blackston-aspiring-data-scientist-designs-summer-curriculum/</link>
+      <pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
+      <guid>/blog/j.-walker-blackston-aspiring-data-scientist-designs-summer-curriculum/</guid>
+      <description>&lt;p&gt;Last time we spoke, I was trying to grasp how functions worked, failing miserably to get a web scraper up and running, and suffering from the general malaise of an over-educated mid-20&amp;rsquo;s male who stares at his phone too much.&lt;/p&gt;
+&lt;p&gt;Beyond the more existential concerns, I have decided (with the help of my lovely girlfriend) to design a mini summer course of self-study. Thanks to MIT&amp;rsquo;s open courseware, I will take my series of intros to computation and computer science (with a focus in python), algorithms, and potentially some dedicated software developmennt coursework. While many seem to disagree about the best approach for learning something like programming, I will go with the prevailing wisdom that simpler is better in this regard. Lectures, exams, paper, pencil, and whiteboards- the hard and boring way. I will limit my use of a browser as that can be distracting. This may not directly feed into the didactic goals of my PhD, but it will be important that I sharpen these skills for the eventual job search in data science (if academic epidemiology doesn&amp;rsquo;t take shape).&lt;/p&gt;
+&lt;p&gt;By the end of June, I hope to have completed 6.0001 and 6.0002, with the goal of more concrete theoretical understanding of how programs work.&lt;/p&gt;
+&lt;p&gt;Here goes nothin&amp;rsquo;&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>Slides</title>
-      <link>/slides/</link>
-      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/slides/</guid>
-      <description></description>
+      <title>J. Walker Blackston, aspring data scientist, Struggles with functions for cleaning data</title>
+      <link>/blog/j.-walker-blackston-aspring-data-scientist-struggles-with-functions-for-cleaning-data/</link>
+      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
+      <guid>/blog/j.-walker-blackston-aspring-data-scientist-struggles-with-functions-for-cleaning-data/</guid>
+      <description>&lt;p&gt;Well, this morning I worked through a few guided phases of DataQuest&amp;rsquo;s Python For Data Science project which seeks to analyze app data from the Google Play and iOS Apple Stores.&lt;/p&gt;
+&lt;p&gt;The project, while outwardly simple, contains many steps that are common to data science. To successfully import and clean our data, we needed to create some personalized functions that can handle our specific needs. In this case, it was the need to identify non-English characters (based on ASCII indexing) and scrub duplicates from our data at the same time. We made some really handy functions for this, the first being a data exploration tool that will provide spaces between some highlighted rows and count/print the number of columns and rows in the set:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def explore_data(dataset, start, end, rows_cols = False):
+    data_slice = dataset[start:end]
+    for row in data_slice:
+        print(row)
+        print(&#39;\n&#39;)
+
+    if rows_cols:
+        print(&#39;Number of rows:&#39;, len(dataset))
+        print(&#39;Number of columns:&#39;, len(dataset[0]))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then we wrote a short program that will detect duplicates in data. I know there are likely better functions out there for this, but it was cool to create my own and see what the computer reads through to do so:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;dup_rows = [] #initialize empty lists
+unique_rows = []
+
+for dat in data:
+  name = dat[0]
+  if name in unique_rows:
+    dup_rows.append(name)
+  else:
+    unique_row.append(name)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Which will be updated to include an &amp;lsquo;is_english&amp;rsquo; function to detect non-ASCII characters in a string:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def is_english(string):
+    non_am = 0
+
+    for char in string:
+        if ord(character) &amp;gt; 127:
+            non_am += 1
+
+    if non_am &amp;gt; 3:
+        return False
+    else:
+        return True
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Which is also just super neat because it uses the built-in function, &amp;lsquo;ord()&amp;rsquo; to tell us the index of characters passed into the string parameter, iterate over however many characters are in the string, and spit out a counter of non-ASCII values. In general, if a string contains more than 3 non-ASCII it&amp;rsquo;s apparently considered non-English. Now I know!&lt;/p&gt;
+&lt;p&gt;Anyhow, this was super hard to do without peaking, and I think I know why. I still cannot intuit the way that functions can and should handle variables you pass in. For example, when the dup_rows.append(name) command is specified, I wanted to write it initially with the parameter &amp;lsquo;dat&amp;rsquo; because that&amp;rsquo;s the iterator. But the purpose of the function is to take the iterator to craft a new variable that was originally empty. This will just take practice I guess :/&lt;/p&gt;
+&lt;p&gt;Here goes nothin&amp;rsquo;&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>Projects</title>
-      <link>/project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/project/</guid>
-      <description></description>
+      <title>J. Walker Blackston, utter programming novice, Starts learning python for data science</title>
+      <link>/blog/j.-walker-blackston-utter-programming-novice-starts-learning-python-for-data-science/</link>
+      <pubDate>Tue, 21 May 2019 00:00:00 +0000</pubDate>
+      <guid>/blog/j.-walker-blackston-utter-programming-novice-starts-learning-python-for-data-science/</guid>
+      <description>&lt;p&gt;As I am still launching this website and learning what it does (and more often, does not do) I am reminded of the vast interconnectedness of programming languages.
+No language can truly be learned in isolation&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Take this blog for example. In order for me to demonstrate what I learn, I need to understand how markdown will process my commands. I have to learn its basics before I can demonstrate myself learning the basics of python with in-line code. Confused yet?&lt;/p&gt;
+&lt;p&gt;At any rate, this post is really a procrastination technique for my next chapter of &amp;ldquo;Automate the Boring Stuff&amp;rdquo; on Lists.&lt;/p&gt;
+&lt;p&gt;Here goes nothin&amp;rsquo;&lt;/p&gt;
+&lt;p&gt;Post mortem: I just worked on python functions that can return desired parameters 1) to the exclusion of the other parameters, accomplished through an &amp;lsquo;if-else&amp;rsquo; code block, and 2) that return statements can feature ALL possible parameters of the function. I also learned about the importance of setting defaults to your arguments when a function will be used repeatedly for the same data or object.&lt;/p&gt;
+&lt;p&gt;Post post mortem: It turns out its very difficult to add google analytics and comments into your blog, so that will be a learning lesson. That also caused the delay in this post (the posts directory wouldn&amp;rsquo;t commit because of faulty code).&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title></title>
-      <link></link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid></guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Courses</title>
-      <link>/courses/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/courses/</guid>
-      <description></description>
+      <title>J. Walker Blackston, utter programming novice, launches website</title>
+      <link>/blog/j.-walker-blackston-utter-programming-novice-launches-website/</link>
+      <pubDate>Sun, 19 May 2019 00:00:00 +0000</pubDate>
+      <guid>/blog/j.-walker-blackston-utter-programming-novice-launches-website/</guid>
+      <description>&lt;p&gt;Well.
+Finally got around to putting this old website together. Neat thing about it - powered by 
+&lt;a href=&#34;http://jekyllrb.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jekyll&lt;/a&gt; and I can use Markdown to author my posts. It actually is a lot easier than I thought it was going to be.&lt;/p&gt;
+&lt;p&gt;Here goes nothin&amp;rsquo;!&lt;/p&gt;
+</description>
     </item>
     
   </channel>
