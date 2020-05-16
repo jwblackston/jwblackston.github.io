@@ -2,141 +2,279 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Walker Blackston</title>
-    <link>/</link>
-      <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://walkerblackston.com/</link>
+      <atom:link href="https://walkerblackston.com/index.xml" rel="self" type="application/rss+xml" />
     <description>Walker Blackston</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 26 May 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>2020</copyright><lastBuildDate>Fri, 03 Apr 2020 13:24:11 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://walkerblackston.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Walker Blackston</title>
-      <link>/</link>
+      <link>https://walkerblackston.com/</link>
     </image>
     
     <item>
-      <title>J. Walker Blackston, python and board game novice, tries Dungeons and Dragons</title>
-      <link>/blog/j.-walker-blackston-python-and-board-game-novice-tries-dungeons-and-dragons/</link>
-      <pubDate>Sun, 26 May 2019 00:00:00 +0000</pubDate>
-      <guid>/blog/j.-walker-blackston-python-and-board-game-novice-tries-dungeons-and-dragons/</guid>
-      <description>&lt;p&gt;Today I played roughly 4+ hours of what became my first Dungeons and Dragons campaign. High school me rolls his eyes, but he can shove it because I am both smarter and stronger than he is.&lt;/p&gt;
-&lt;p&gt;In all seriousness, I see the appeal. The genuine joy you experience when hilarious shit happens to you or your buddies ios rarely duplicated. I don&amp;rsquo;t expect to be swapping my gym membership for a D4 games budget any time soon (a local D&amp;amp;D hangout), but I&amp;rsquo;ll be damned if I didn&amp;rsquo;t have a blast and will continue with this campaign occasionally.&lt;/p&gt;
-&lt;p&gt;Importantly, this experience brought me an idea for my first &amp;ldquo;personal project&amp;rdquo; to write in python. I realized this when thinking about how traits and turns are structured. To the un-churched, nearly everything in D&amp;amp;D revolves around a series of multi-sided die. A few are 20-sided (or &amp;ldquo;d20&amp;rdquo;), where others are d6 or d4 etc., all with equal probability of rolling. These rolls dictate player traits, attack abilities, and any other special attributes related to your character arc.&lt;/p&gt;
-&lt;p&gt;One condition I&amp;rsquo;d like to play with here is the concept of &amp;ldquo;advantaged&amp;rdquo; or &amp;ldquo;disadvantaged&amp;rdquo; rolls. This simply means that when you roll 2 d20&amp;rsquo;s, you take the lower of the rolls. If you were creating a D&amp;amp;D Python game, how would you simulate these rolls and make a decision?&lt;/p&gt;
-&lt;p&gt;&#39;&amp;rsquo;&amp;rsquo; #let r_1 and r_2 be the set of possible rolls
-r_1 = list(range(1, 20, 1)
-r_2 = list(range(1, 20, 1)
-#create a function that will take in the move of both, draw randomly with equal probability for all numbers, and make a simple decision to give advantage:&lt;/p&gt;
-&lt;p&gt;import random
-import numpy as np
-def die():&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;print(&#39;Please roll: &#39;)
-roll = input()
-
-if roll != &#39;roll&#39;:
-    print(&#39;Please type &amp;quot;roll&amp;quot; to roll die&#39;) 
-
-else:
-    roll_one = list(range(1, 21))
-    roll_two = list(range(1, 21))
-
-    if roll_one &amp;gt; roll_two:
-        print(&#39;You rolled a &#39; + str(roll_one) + &#39; and &#39; + str(roll_two) + &#39;. &#39; &#39;Advantage: &#39; + str(roll_one))
-        roll = roll_one
-        return roll_one 
-    
-    elif roll_one &amp;lt; roll_two:
-        print(&#39;Disadvantage: &#39; + str(roll_two))
-        roll = roll_two
-        return roll_two   
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&#39;&amp;rsquo;&amp;rsquo;
-I got the first iteration of this to run! Holy cow that felt cool. But then I got cheeky and decided to refactor. Due to some pointers from a professional, I decided to simplify and clean it up, which represents the code you see above. This has taught me several lessons: 1) always save checkpoints of successful code, and 2) if it ain&amp;rsquo;t broke, don&amp;rsquo;t fix it. So now I will be refactoring &lt;em&gt;this&lt;/em&gt; code to make it run again.&lt;/p&gt;
-&lt;p&gt;Here goes nothin&amp;rsquo;&lt;/p&gt;
+      <title>Would simply thinking better of someone make them so?</title>
+      <link>https://walkerblackston.com/blog/would-simply-thinking-better-of-someone-make-them-so/</link>
+      <pubDate>Fri, 03 Apr 2020 13:24:11 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/would-simply-thinking-better-of-someone-make-them-so/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://casualinferencedotorg.files.wordpress.com/2020/04/clay-banks-ljqarjajotc-unsplash.jpg?w=1024&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Having just finished a few works of Jonathan Haidt and Stephen Pinker, I am left with recurring question: “what parts of our culture and society might operate as self-fulfilling prophesies?” Even more directly, might otherwise “bad” people operate differently if we assumed what Haidt and Louikianoff call the “&lt;em&gt;principle of charitability?&lt;/em&gt;”&lt;/p&gt;
+&lt;p&gt;Under the principle of charitability, we layer our interpretations of others’ the actions over a base layer of grace. Maybe someone who cut you off at that intersection just finished a 12-hour shift at the hospital, or had a fight with their spouse. In short, we assume the best, or at least &lt;em&gt;not&lt;/em&gt; the worst. Lukianoff and Haidt’s work titled &lt;em&gt;The Coddling of the American Mind&lt;/em&gt; details how the opposite of this principle - assuming the worst of others through an “us vs. them” lens - is wreaking havoc on our college campuses and other spaces of intellectual conversation. But through careful analysis and some compelling anecdotes, I was convinced that there seemed to be more to this as a unifying philosophy of thought. It led me to question what its implications would be, were it to be applied systematically.&lt;/p&gt;
+&lt;p&gt;On its surface, thinking of someone charitably is simple. You interpret their actions through an initial lens of patience and calm, thoughtfully updating your judgments as they continue to reveal more layers of their intent. But simple things are rarely easy. We find that simple acts of gratitude, accepting when we are wrong, or admitting defeat can be draining and difficult. The principle of charitability, then, may be quite difficult to scale upward from the individual.&lt;/p&gt;
+&lt;p&gt;However, if we grant the possibility of &lt;em&gt;thinking&lt;/em&gt; better of someone actually makes them better, then our principle should be plausible. We can and should test this theory. Now, more than ever, folks need to feel that they belong in a community. We need to see their thoughts as valid from their perspective. If we expect better from each other, need to first &lt;em&gt;think&lt;/em&gt; &lt;em&gt;better&lt;/em&gt; of each other.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>J. Walker Blackston, aspiring data scientist, Designs summer curriculum</title>
-      <link>/blog/j.-walker-blackston-aspiring-data-scientist-designs-summer-curriculum/</link>
-      <pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
-      <guid>/blog/j.-walker-blackston-aspiring-data-scientist-designs-summer-curriculum/</guid>
-      <description>&lt;p&gt;Last time we spoke, I was trying to grasp how functions worked, failing miserably to get a web scraper up and running, and suffering from the general malaise of an over-educated mid-20&amp;rsquo;s male who stares at his phone too much.&lt;/p&gt;
-&lt;p&gt;Beyond the more existential concerns, I have decided (with the help of my lovely girlfriend) to design a mini summer course of self-study. Thanks to MIT&amp;rsquo;s open courseware, I will take my series of intros to computation and computer science (with a focus in python), algorithms, and potentially some dedicated software developmennt coursework. While many seem to disagree about the best approach for learning something like programming, I will go with the prevailing wisdom that simpler is better in this regard. Lectures, exams, paper, pencil, and whiteboards- the hard and boring way. I will limit my use of a browser as that can be distracting. This may not directly feed into the didactic goals of my PhD, but it will be important that I sharpen these skills for the eventual job search in data science (if academic epidemiology doesn&amp;rsquo;t take shape).&lt;/p&gt;
-&lt;p&gt;By the end of June, I hope to have completed 6.0001 and 6.0002, with the goal of more concrete theoretical understanding of how programs work.&lt;/p&gt;
-&lt;p&gt;Here goes nothin&amp;rsquo;&lt;/p&gt;
+      <title>Seneca at the photocopier: Practicing stoicism as an graduate intern</title>
+      <link>https://walkerblackston.com/blog/seneca-at-the-photocopier-practicing-stoicism-as-an-graduate-intern/</link>
+      <pubDate>Mon, 23 Mar 2020 19:47:13 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/seneca-at-the-photocopier-practicing-stoicism-as-an-graduate-intern/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;Jack Worthy punches the elevator call button as a steaming cup of Folgers sloshes onto his naked wrist. His punishment for lateness is compounded by his perception of today&amp;rsquo;s upcoming duties. As he sidles to the back corner of the elevator pod, he turns to scan the announcement board. He remains turned with each floor passing, effectively ignoring incoming passengers. He gets off at 11 and unlocks the door with his free hand. After crashing into his swivel chair, he makes way to &lt;em&gt;the binder&lt;/em&gt;. The binder holds his duties, his wants and dreams for the next 4 hours. After initially making peace with the binder, Jack runs down the list of reasons why this all sucks. He deserves better - isn&amp;rsquo;t he a little old to be doing this? He&amp;rsquo;s more than educated enough to get &lt;em&gt;someone&lt;/em&gt; &lt;em&gt;else&lt;/em&gt; to do it (I mean, he is a &lt;em&gt;graduate&lt;/em&gt; student after all). He was late and no one noticed! Surely he&amp;rsquo;s not that important if that&amp;rsquo;s true.&lt;/p&gt;
+&lt;p&gt;Bored with complaining, Jack made his way to the copier. He would need to unbuckle the first however-many sheets, line them up, enter his email address, ensure that the file name would reflect the purpose and genre of the sheets in transit and punch &amp;ldquo;&lt;strong&gt;Start&lt;/strong&gt;.&amp;rdquo; He would bring a book or something to do while the machine did its thing, but it often jammed unpredictably. He realized that any more than 20 pages at a time would be a risk. Also, sheets were frequently out of order. A CRF might be mingled with a PHI, and a consent form sprinkled in the middle of MEQs or RFAs. So he developed a system of binder clips to allow for easier bindering and organizing down the line. He felt a bit dubious for thinking this &amp;ldquo;innovation&amp;rdquo; would increase his productivity (what did it mean to be more productive at &lt;em&gt;scanning&lt;/em&gt;?) but the added free time was nice.&lt;/p&gt;
+&lt;p&gt;Very slowly then all at once, Jack felt calm. Succeeding at a game he created (how can he scan more records more efficiently and cleanly?), the frame of his administrative duties had flipped. He was more than accepting of its banality, he was &lt;em&gt;grateful.&lt;/em&gt;..&lt;/p&gt;
+&lt;p&gt;Jack Worthy does not exist. He is a fictional account of my first day as a student intern in a local health clinic&amp;rsquo;s office of records. His realization of gratitude mirrors my own after reading William Irvine&amp;rsquo;s &lt;em&gt;The Stoic Challenge&lt;/em&gt;, Professor Irvine invokes the stoics, a set of philosophers from antiquity interested in bringing balance and tranquility to their way of life. Far from being debbie-downers, the stoics took great joy in life as they frequently visualized life &lt;em&gt;without&lt;/em&gt; its most joyful components. The quick glance into a poverty of good stuff or good relationships made their reality a miracle.&lt;/p&gt;
+&lt;p&gt;Irvine&amp;rsquo;s main piece of homework, the &amp;ldquo;stoic test strategy&amp;rdquo; asks that we treat each of life&amp;rsquo;s setbacks as we would an exam: how did we react to them emotionally and logistically? Only if we found a reasonable solution, and did so without anger or frustration can we call it a pass.&lt;/p&gt;
+&lt;p&gt;The other day, I decided to take Irvine to task. I would test both my overall performance on the day and sprinkle in sub-tests for tasks that would be particularly trying of my patience. I thought it might help pass the time or make me seem at least &lt;em&gt;outwardly&lt;/em&gt; pleasant. I did not expect, however, for it to create an overwhelming sense of calm and gratitude.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I am now on the hunt to talk with anyone and everyone who&amp;rsquo;s been in my shoes. How have you taken this opportunity to do more than &amp;ldquo;get through&amp;rdquo; something? Depsite seemingly exponential progress in machine learning, I doubt AIs will be scanning, filing and redacting our old paper copy medical records in the next decade. They certainly won&amp;rsquo;t be calling participants to check on them (unless they expect to get hung up on). A significant portion of our economy still centers on administrative tasks &amp;ndash; some estimate as many as millions of people still serve to categorize, store and move information. How might adopting a stoical philosophy reframe this activity for us who think that we have &amp;ldquo;better things&amp;rdquo; to do?&lt;/p&gt;
+&lt;p&gt;Let me know what you think- How have you handled the burden of menial tasks? How would the &amp;ldquo;stoic gods&amp;rdquo; have thought you performed in doing so?&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>J. Walker Blackston, aspring data scientist, Struggles with functions for cleaning data</title>
-      <link>/blog/j.-walker-blackston-aspring-data-scientist-struggles-with-functions-for-cleaning-data/</link>
-      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
-      <guid>/blog/j.-walker-blackston-aspring-data-scientist-struggles-with-functions-for-cleaning-data/</guid>
-      <description>&lt;p&gt;Well, this morning I worked through a few guided phases of DataQuest&amp;rsquo;s Python For Data Science project which seeks to analyze app data from the Google Play and iOS Apple Stores.&lt;/p&gt;
-&lt;p&gt;The project, while outwardly simple, contains many steps that are common to data science. To successfully import and clean our data, we needed to create some personalized functions that can handle our specific needs. In this case, it was the need to identify non-English characters (based on ASCII indexing) and scrub duplicates from our data at the same time. We made some really handy functions for this, the first being a data exploration tool that will provide spaces between some highlighted rows and count/print the number of columns and rows in the set:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def explore_data(dataset, start, end, rows_cols = False):
-    data_slice = dataset[start:end]
-    for row in data_slice:
-        print(row)
-        print(&#39;\n&#39;)
-
-    if rows_cols:
-        print(&#39;Number of rows:&#39;, len(dataset))
-        print(&#39;Number of columns:&#39;, len(dataset[0]))
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Then we wrote a short program that will detect duplicates in data. I know there are likely better functions out there for this, but it was cool to create my own and see what the computer reads through to do so:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;dup_rows = [] #initialize empty lists
-unique_rows = []
-
-for dat in data:
-  name = dat[0]
-  if name in unique_rows:
-    dup_rows.append(name)
-  else:
-    unique_row.append(name)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Which will be updated to include an &amp;lsquo;is_english&amp;rsquo; function to detect non-ASCII characters in a string:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def is_english(string):
-    non_am = 0
-
-    for char in string:
-        if ord(character) &amp;gt; 127:
-            non_am += 1
-
-    if non_am &amp;gt; 3:
-        return False
-    else:
-        return True
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Which is also just super neat because it uses the built-in function, &amp;lsquo;ord()&amp;rsquo; to tell us the index of characters passed into the string parameter, iterate over however many characters are in the string, and spit out a counter of non-ASCII values. In general, if a string contains more than 3 non-ASCII it&amp;rsquo;s apparently considered non-English. Now I know!&lt;/p&gt;
-&lt;p&gt;Anyhow, this was super hard to do without peaking, and I think I know why. I still cannot intuit the way that functions can and should handle variables you pass in. For example, when the dup_rows.append(name) command is specified, I wanted to write it initially with the parameter &amp;lsquo;dat&amp;rsquo; because that&amp;rsquo;s the iterator. But the purpose of the function is to take the iterator to craft a new variable that was originally empty. This will just take practice I guess :/&lt;/p&gt;
-&lt;p&gt;Here goes nothin&amp;rsquo;&lt;/p&gt;
+      <title>STEM Grad School Boot-camp: Week 3</title>
+      <link>https://walkerblackston.com/blog/stem-grad-school-boot-camp-week-3/</link>
+      <pubDate>Tue, 25 Feb 2020 13:00:00 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/stem-grad-school-boot-camp-week-3/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://casualinferencedotorg.files.wordpress.com/2020/02/bootcamp-2.jpeg?w=480&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This will be part 3 of 4 in a &lt;strong&gt;weekly series&lt;/strong&gt; focused on preparing for graduate school in STEM if you come from a humanities based undergrad or other graduate experience. Please make sure to follow my blog to get the latest update to the series.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;&lt;em&gt;We must believe that we are gifted for something and that this thing, at whatever cost, must be attained.&amp;quot;&lt;/em&gt; - Marie Curie&lt;/p&gt;
+&lt;p&gt;The impetus for a &amp;ldquo;big project&amp;rdquo; has pushed even the most stuck thinkers and writers of our time into the realm of productivity. While the particulars of each approach differ- JK Rowlings used to book luxury hotel rooms for the self-imposted financial pressure- the common thread of a &amp;ldquo;big project&amp;rdquo; remains. I propose that this type of project would exponentially improve your graduate experience (and subsequent job hunt). This week, we will be planning out our &amp;ldquo;big project,&amp;rdquo; or the one thing that if you finished it this semester or academic year would confer immense benefits to your career. This project comes with &lt;strong&gt;just two basic ground rules&lt;/strong&gt; that, if followed, should confer these exponential benefits.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1) It should be both easy to describe and plan but hard to execute.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Since you are weeks from starting your STEM graduate experience, the precision of your planning should be ramping up. We&amp;rsquo;ve covered everything from the 
+&lt;a href=&#34;https://casual-inference.org/2020/02/03/stem-grad-school-boot-camp-week-1/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;existential&lt;/a&gt; to the 
+&lt;a href=&#34;https://casual-inference.org/2020/02/12/stem-bootcamp-week-2/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;mundane&lt;/a&gt;. It&amp;rsquo;s time to put pen to paper. &lt;strong&gt;Take out a sheet of paper or open your journal and write down the following:&lt;/strong&gt; &lt;em&gt;what would I be most proud of myself for doing this year?&lt;/em&gt; Make sure this is related to graduate school, but not necessarily grades or GPA focused. By this, I mean, try not to write about getting a 4.0. While this is a great accomplishment, most employers and even PhD programs think in terms of grade bands. A 4.0 is nice, but not as weighty as it was in undergrad. It might be expected in some rare instances or institutions (check first), but a 3.5-3.7 may carry similar assurances of competency.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Instead&lt;/em&gt;, &lt;strong&gt;focus on planning something that the other students (who are chasing the 4.0) are not considering&lt;/strong&gt;. Can you get on a peer-reviewed scientific manuscript or conference abstract? Can you co-write a computer program with an advisor or advanced PhD student? Are there skills that are not being taught in your program you could pick up and organize into a brief seminar for faculty and staff? These are flexible win-wins - even the &lt;em&gt;efforts&lt;/em&gt; to produce deliverables as code or a paper increase your skills in the area and often lead to better letters of recommendation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2) It&amp;rsquo;s what you work on first.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This next rule will certainly get me in trouble with your advisor and lecturers. However, if executed properly, should leave you in good shape for their classes in addition to your goals. This project should be the focus of that first chunk of study time during the day. When you are fresh and most likely to hang on to your attention , this time period becomes critical to advance the goals of your project. Even if you are in a lull and waiting on feedback from others, commit 30 minutes to planning your next moves. How will you approach feedback from this person? Should you meet with them personally (or over Skype) to discuss? Make a schedule to chip away and make your big project seem smaller.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;That&amp;rsquo;s it.&lt;/em&gt; If planned carefully and attacked consistently, the big project could catapult your STEM graduate school experience into career success. Many careers follow exponential curves for success - marginal gains creep forward from hard work until they explode into life-altering achievement. The &amp;ldquo;big project&amp;rdquo; is a way to skip the plateau phase. In the same way that grants beget more grants, papers beget more papers and scientific expertise begets more scientific expertise. Make the moonshots now and you will reap rewards later.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Stay tuned for the &lt;strong&gt;final week of STEM Grad school boot-camp,&lt;/strong&gt; where we will be fine tuning some day-to-day habits guaranteed to transition you fully from humanities to STEM!&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>J. Walker Blackston, utter programming novice, Starts learning python for data science</title>
-      <link>/blog/j.-walker-blackston-utter-programming-novice-starts-learning-python-for-data-science/</link>
-      <pubDate>Tue, 21 May 2019 00:00:00 +0000</pubDate>
-      <guid>/blog/j.-walker-blackston-utter-programming-novice-starts-learning-python-for-data-science/</guid>
-      <description>&lt;p&gt;As I am still launching this website and learning what it does (and more often, does not do) I am reminded of the vast interconnectedness of programming languages.
-No language can truly be learned in isolation&amp;hellip;&lt;/p&gt;
-&lt;p&gt;Take this blog for example. In order for me to demonstrate what I learn, I need to understand how markdown will process my commands. I have to learn its basics before I can demonstrate myself learning the basics of python with in-line code. Confused yet?&lt;/p&gt;
-&lt;p&gt;At any rate, this post is really a procrastination technique for my next chapter of &amp;ldquo;Automate the Boring Stuff&amp;rdquo; on Lists.&lt;/p&gt;
-&lt;p&gt;Here goes nothin&amp;rsquo;&lt;/p&gt;
-&lt;p&gt;Post mortem: I just worked on python functions that can return desired parameters 1) to the exclusion of the other parameters, accomplished through an &amp;lsquo;if-else&amp;rsquo; code block, and 2) that return statements can feature ALL possible parameters of the function. I also learned about the importance of setting defaults to your arguments when a function will be used repeatedly for the same data or object.&lt;/p&gt;
-&lt;p&gt;Post post mortem: It turns out its very difficult to add google analytics and comments into your blog, so that will be a learning lesson. That also caused the delay in this post (the posts directory wouldn&amp;rsquo;t commit because of faulty code).&lt;/p&gt;
+      <title>STEM Grad School Bootcamp: Week 2</title>
+      <link>https://walkerblackston.com/blog/stem-grad-school-bootcamp-week-2/</link>
+      <pubDate>Wed, 12 Feb 2020 15:17:10 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/stem-grad-school-bootcamp-week-2/</guid>
+      <description>&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;
+&lt;a href=&#34;http://casual-inference.org/2020/02/25/stem-grad-school-boot-camp-week-3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;STEM Grad School Boot-camp: Week 3 – Casual Inferences&lt;/a&gt; - &lt;time datetime=&#34;2020-02-25 10:30:16&#34;&gt;Feb 2, 2020&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[…] of your planning should be ramping up. We’ve covered everything from the existential to the mundane. It’s time to put pen to paper. Take out a sheet of paper or open your journal and write down […]&lt;/p&gt;
+&lt;hr /&gt;
 </description>
     </item>
     
     <item>
-      <title>J. Walker Blackston, utter programming novice, launches website</title>
-      <link>/blog/j.-walker-blackston-utter-programming-novice-launches-website/</link>
-      <pubDate>Sun, 19 May 2019 00:00:00 +0000</pubDate>
-      <guid>/blog/j.-walker-blackston-utter-programming-novice-launches-website/</guid>
-      <description>&lt;p&gt;Well.
-Finally got around to putting this old website together. Neat thing about it - powered by 
-&lt;a href=&#34;http://jekyllrb.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jekyll&lt;/a&gt; and I can use Markdown to author my posts. It actually is a lot easier than I thought it was going to be.&lt;/p&gt;
-&lt;p&gt;Here goes nothin&amp;rsquo;!&lt;/p&gt;
+      <title>STEM Grad School Bootcamp: Week 2</title>
+      <link>https://walkerblackston.com/blog/stem-grad-school-bootcamp-week-2/</link>
+      <pubDate>Wed, 12 Feb 2020 15:17:10 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/stem-grad-school-bootcamp-week-2/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://casualinferencedotorg.files.wordpress.com/2020/02/bootcamp.jpeg?w=480&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This will be part 2 of 4 in a &lt;strong&gt;weekly series&lt;/strong&gt; focused on preparing for graduate school in STEM if you come from a humanities based undergrad or other graduate experience. Please make sure to follow my blog to get the latest update to the series.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Now that we have established our 
+&lt;a href=&#34;https://casual-inference.org/2020/02/03/stem-grad-school-boot-camp-week-1/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ideological framework for graduate school&lt;/a&gt;, we ought to shift focus toward our &lt;em&gt;material&lt;/em&gt; environment. This week we will be getting organized.&lt;/p&gt;
+&lt;p&gt;Getting organized is about more than color coding files, printing out a calendar or sticky-notes. Graduate school has the sneaky ability to render any tips and tricks for organization useless. This post will focus on the &lt;strong&gt;&lt;em&gt;few but wildly important&lt;/em&gt;&lt;/strong&gt; material and environmental factors that contribute to your success.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. Streamline your finances:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This should really be step zero, because it forms the foundation for all other &amp;ldquo;hacks&amp;rdquo; meant to enhance your transition to grad school in STEM. Yet, few students seem to really grasp the day-to-day impact of this lifestyle (speaking peronally as someone who stacked additional loans on tuition just for living expenses). Most of our elders will lecture us about staying frugal, pinching pennies and saving more than we spend, etc. It&amp;rsquo;s likely that 90% of you ignore this, as I did. You have to experience it for yourself before deciding the real importance of decreased spending.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Do this:&lt;/strong&gt; Try to monitor your cash flow as closely as possible for a few days, then try a week. Certain days will inevitably buck the trend, but generally you should be able to estimate what you buy on a bi-weekly basis. Have an honest conversation with yourself about what is essential (&lt;strong&gt;bonus point&lt;/strong&gt;: loop in a close friend or intimate partner) and what is not. The money from your loan will seem like monopoly money at first, so it is vital that you run these pilot spending weeks before this influx of cash. Apps, message boards, and banks can be &lt;em&gt;marginally helpful&lt;/em&gt; but they try to remove friction from spending and tracking finances. You should actively add healthy amounts of friction early on to really see a change.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. Make a scholarship/grant/fellowship action plan&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Congratulations if you are already studying at a reduced rate! It not only saves you money, but looks better down the line for interviews and hiring committee review. If not, don&amp;rsquo;t worry- use the first semester of your courses to &lt;strong&gt;&lt;em&gt;build your case for why you should have been on scholarship in the first place.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;As you kick butt, &lt;strong&gt;find a free period to do the following&lt;/strong&gt;: Spend an afternoon looking into scholarships (of any amount) that you qualify for, then spend another day to draft and write applications, have them looked over by someone you trust, then submit. Seriously, apply for as many as possible. Dr. Karen Kelsky of &lt;em&gt;The Professor is In&lt;/em&gt; blog and eponymous bestseller advises thousands of students to do this with the goal of 
+&lt;a href=&#34;http://theprofessorisin.com/2011/07/05/dr-karens-foolproof-grant-template/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;getting on the &amp;ldquo;grant gravy train.&amp;quot;&lt;/a&gt; By getting a foot in the door of the scholarship world, you demonstrate that you are vetted. You&amp;rsquo;ve earned independent, peer-reviewed academic stamps of approval. You are therefore far more likely to be given subsequent scholarships and keep the grant gravy train rolling.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. Sort the particulars&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;While you may have covered some of this last week, it may be worth repeating that straightening out the details of your daily experience will be fundamental to your success. On my first day, I didn&amp;rsquo;t know where to park, where to go for lunch, where my desk would be, or when tuition needed to be paid. These are things that some programs will not hand to you like an orientation leader. Do you know when you can drop a class at the latest to avoid fees? When are your breaks in the semester? Do you have weekend plans or conferences for the fall or spring that need to be prioritized? &lt;strong&gt;Bug your advisor and program coordinator&lt;/strong&gt; about the finer points of your daily and weekly schedule that if mismanaged, can add up to serious degradation of your mental health over time.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. Get (physically) organized&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Where do you study? What tools do you need to start working? Don&amp;rsquo;t get to syllabus week and assume that future you will sort this out. Think it through now, open up &lt;em&gt;Amazon&lt;/em&gt; (or your local office supply store, preferably), and buy the binders, file folders, calculators and pens you may need. Some places will offer discounts to students with a valid ID, so make sure to ask for one from your school and start saving money right away. See if your school library offers carrel (private study room) rentals per semester or academic year. Having this (
+&lt;a href=&#34;https://www.calnewport.com/blog/2015/03/10/you-are-where-you-work-more-examples-of-fantastically-deep-working-spaces/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;or any quiet, dedicated space&lt;/a&gt;) be your &lt;em&gt;Camp David&lt;/em&gt; of focus will pay huge dividends later in your degree.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Conclusion:&lt;/em&gt;&lt;/strong&gt; In many ways, material preparation for school can equal the importance of philosophical preparation. Ideas without a plan remain so. However, if you can sort your finances, make a scholarship action plan, sort all the specifics, and get your educational environment organized, you will be well-positioned to succeed in STEM graduate programs and beyond.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>stem bootcamp</title>
+      <link>https://walkerblackston.com/blog/stem-bootcamp/</link>
+      <pubDate>Wed, 12 Feb 2020 14:19:10 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/stem-bootcamp/</guid>
+      <description>&lt;p&gt;&lt;em&gt;This will be part 1 of 4 in a &lt;strong&gt;weekly series&lt;/strong&gt; focused on preparing for graduate school in STEM if you come from a humanities based undergrad or other graduate experience. Please make sure to follow my blog to get the latest update to the series.&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Dangerous Ideas: Should you miss the max number of classes?</title>
+      <link>https://walkerblackston.com/blog/dangerous-ideas-should-you-miss-the-max-number-of-classes/</link>
+      <pubDate>Mon, 10 Feb 2020 14:00:00 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/dangerous-ideas-should-you-miss-the-max-number-of-classes/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://casualinferencedotorg.files.wordpress.com/2020/02/photo-1576673195444-be906d7012d3-1.jpeg?w=1024&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Credit: Austrian National Library&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;It is a feeling familiar to any student: You sit through lecture for an approximate eternity, pondering the infinite other ways to spend your time. Maybe you are not one to miss, let alone skip, classes that may cost hundreds of dollars per lecture. Maybe you really want to do well or even feel that you owe the professor enough respect for an hour of your attention (more of us should think this way, but that&amp;rsquo;s another topic of discussion). Regardless of your intention, your attention fades. Experiencing this myself, I asked a more global question: &lt;em&gt;what if I missed this lecture, then lectured and tested myself on the same material?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s evaluate this question empirically, because we can guess the subjective answer is a definitive &lt;em&gt;yes.&lt;/em&gt; I will make &lt;strong&gt;&lt;em&gt;three primary arguments&lt;/em&gt;&lt;/strong&gt; in favor of missing the maximum allowable lectures from your course syllabus (this is usually under the attendance heading).&lt;/p&gt;
+&lt;p&gt;*&lt;strong&gt;&lt;em&gt;CAVEAT:&lt;/em&gt;&lt;/strong&gt; This argument assumes that you are in STEM-focused, technical or semi-technical classes. If lecture or discussion material are exclusively covered as they are in a non-technical class, I would not advise this strategy.*&lt;/p&gt;
+&lt;p&gt;1. &lt;strong&gt;Lectures do not typically feature problem sets - which are fundamental to your success in a technical course.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Prevailing wisdom among scholars of learning suggests that active recall - the act of reading a question, looking away to answer, and checking your answer with the correct answer - cements deeper chunks of knowledge in our brains. This method is the most efficient for shifting knowledge from short-term and/or working memory to long-term memory. Hearing a professor describe a formula or method is one thing, but moving the pieces around with your mind is another. In fact, hearing something described can sometimes create the paradoxical effect of &amp;ldquo;display learning (term my own)&amp;quot;, where you feel the sense of familiarity with a topic overshadow the deeper intuition required to &lt;em&gt;know&lt;/em&gt; and reproduce it on a test.&lt;/p&gt;
+&lt;p&gt;2. &lt;strong&gt;Lectures can be distracting environments and hamper deeper learning of concepts.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I am lucky in that I have never had to endure massive lecture halls filled with hungover students infinitely swiping across their suite of social media apps. I&amp;rsquo;ve had the rare fortune of small class sizes (or favorable &amp;ldquo;student:teacher ratios&amp;rdquo; in the higher ed world) where distraction can be hemmed by social pressures. However, the modern lecture is filled with distractions, regardless of size. Next time you are in class, take stock of how many people take notes for a few minutes then flit away to whatever shinier site or app piques their interest. I personally don&amp;rsquo;t care how people choose to spend their time or money. The residual distraction for others is what bothers me. If anything, missing some lectures may come with some added mental health benefits- provided you use the time gained wisely.&lt;/p&gt;
+&lt;p&gt;3. &lt;strong&gt;You can&amp;rsquo;t go anywhere (and 
+&lt;a href=&#34;https://www.amazon.com/gp/product/1455586692/ref=as_li_qf_sp_asin_il?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=1455509124&amp;amp;linkCode=as2&amp;amp;tag=stuhac-20&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;should&lt;/a&gt;).&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;&lt;em&gt;All truly great thoughts are conceived by walking&lt;/em&gt;.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;- Friedrich Nietzsche&lt;/p&gt;
+&lt;p&gt;I don&amp;rsquo;t know about you, but my best head space is found on foot. Walking around brings an almost instantaneous shot of mental clarity that it&amp;rsquo;s surprising we have not attempted to hold lectures on the go (I&amp;rsquo;m looking at you, organizational and learning psychologists..). However, I am not alone. Centuries of big thinkers attributed their success and clarity to bouts of lengthy walks. While I have my doubts on the utility of praising Nietzsche, it is true that he would actively schedule long walks to lay out arguments or treatises for his work. Einstein and Darwin are reported to have done the same.&lt;/p&gt;
+&lt;p&gt;Even if you fail to work through your target concept, the physical and psychological refreshment will still likely improve your subsequent study. I have already 
+&lt;a href=&#34;https://casual-inference.org/2020/02/03/stem-grad-school-boot-camp-week-1/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;sung its praises&lt;/a&gt; in a previous post to think through why you are in school, but it may be even more effective when wrestling big lecture topics or problem sets. I even find that taking a drive by yourself with no music or podcasts can uncover similar clarity.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Words of caution and next steps:&lt;/strong&gt; All of these arguments are testable and falsifiable. If you find that missing lectures puts you behind the 8-ball on course material, don&amp;rsquo;t do it! Also, if you don&amp;rsquo;t trust yourself to spend this time gained wisely, don&amp;rsquo;t do it! Only if you feel like you can stow away to a quiet space and push your knowledge deeply should you miss class. In a sense, you&amp;rsquo;re trusting yourself to be the professor for a class of one- do so with care and attention and you may just reap the rewards of deeper understanding and more free time.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>blog body text</title>
+      <link>https://walkerblackston.com/blog/blog-body-text/</link>
+      <pubDate>Sun, 09 Feb 2020 18:43:55 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/blog-body-text/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>STEM Grad School Boot-camp: Week 1</title>
+      <link>https://walkerblackston.com/blog/stem-grad-school-boot-camp-week-1/</link>
+      <pubDate>Mon, 03 Feb 2020 16:29:03 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/stem-grad-school-boot-camp-week-1/</guid>
+      <description>&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;p&gt;
+&lt;a href=&#34;http://casual-inference.org/2020/02/10/dangerous-ideas-should-you-miss-the-max-number-of-classes/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Dangerous Ideas: Should you miss the max number of classes? – Casual Inferences&lt;/a&gt; - &lt;time datetime=&#34;2020-02-10 10:35:29&#34;&gt;Feb 1, 2020&lt;/time&gt;&lt;/p&gt;
+&lt;p&gt;[…] and psychological refreshment will still likely improve your subsequent study. I have already sung its praises in a previous post to think through why you are in school, but it may be even more effective when […]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[STEM Grad School Bootcamp: Week 2 &amp;#8211; Casual Inferences](http://casual-inference.org/2020/02/12/stem-bootcamp-week-2/ &#34;&#34;) - &lt;time datetime=&#34;2020-02-12 10:17:13&#34;&gt;Feb 3, 2020&lt;/time&gt;
+&lt;p&gt;[…] that we have established our ideological framework for graduate school, we ought to shift focus toward our material environment. This week we will be getting […]&lt;/p&gt;
+&lt;hr /&gt;
+#### 
+[STEM Grad School Boot-camp: Week 3 &amp;#8211; Casual Inferences](http://casual-inference.org/2020/02/25/stem-grad-school-boot-camp-week-3/ &#34;&#34;) - &lt;time datetime=&#34;2020-02-25 10:30:14&#34;&gt;Feb 2, 2020&lt;/time&gt;
+&lt;p&gt;[…] the precision of your planning should be ramping up. We’ve covered everything from the existential to the mundane. It’s time to put pen to paper. Take out a sheet of paper or open your journal […]&lt;/p&gt;
+&lt;hr /&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>STEM Grad School Boot-camp: Week 1</title>
+      <link>https://walkerblackston.com/blog/stem-grad-school-boot-camp-week-1/</link>
+      <pubDate>Mon, 03 Feb 2020 16:29:03 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/stem-grad-school-boot-camp-week-1/</guid>
+      <description>&lt;p&gt;&lt;em&gt;This will be part 1 of 4 in a &lt;strong&gt;weekly series&lt;/strong&gt; focused on preparing for graduate school in STEM if you come from a humanities based undergrad or other graduate experience. Please make sure to follow my blog to get the latest update to the series.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://casualinferencedotorg.files.wordpress.com/2020/02/bootcamp-2.jpeg?w=480&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;You did it- you got in! Now what? Entering graduate school can be daunting for some, exciting for others and confusing for most. Unlike day one in undergrad, there are no orientation leaders helping you get your mattress up the stair or guides to walk you to your first class. You need to take full control of the process, which can be both intimidating and empowering. Luckily you are not alone. This blog and a few of my 
+&lt;a href=&#34;https://forum.thegradcafe.com/blogs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;other&lt;/a&gt; 
+&lt;a href=&#34;https://www.calnewport.com/blog/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;favorites&lt;/a&gt;, will lay out the steps needed to take control of your STEM graduate experience.&lt;/p&gt;
+&lt;p&gt;*Brief caveat: Although I aim to generalize to the sciences, specific fields can vary in direct experience. I hope only that the skills and habits I recommend will give you the tools to transition from the humanities into that field more smoothly.*&lt;/p&gt;
+&lt;p&gt;This week we will cover the what, how and why of your transition. This will be your &lt;strong&gt;big picture week&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Big thinkers take time to gather their thoughts. Bill Gates famously takes full weeks out of the year to comb through esoteric papers and books in order to frame his actions for the rest of the year. Einstein and Darwin scheduled long walks during their work day. Steve Jobs would habitually walk around the building before launching new Apple Products. Allow yourself space to do the same type of big idea thinking.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Why?&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Before you dive into the details of financial aid, classes, and publication plans, ask yourself &lt;em&gt;why.&lt;/em&gt; Generating a &lt;em&gt;why&lt;/em&gt; for your process will create 
+&lt;a href=&#34;https://www.sciencedirect.com/science/article/pii/S0361476X99910202?via%3Dihub&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;intrinsic motivation&lt;/a&gt; and feed into your internal 
+&lt;a href=&#34;https://www.tandfonline.com/doi/abs/10.1080/00256307.1978.12022132&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;locus of control&lt;/a&gt; - a mechanism which may significantly impact your ability to stick with the program even when it gets tough. Think of laying out your &lt;em&gt;why&lt;/em&gt; as the outline to a term paper. You might lose interest or purpose if you just start rambling about &lt;em&gt;Twelfth Night&lt;/em&gt; and have to address symbols present in five other works of the Bard.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;How to get your why?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Option 1:&lt;/em&gt; I have some tried and true methods for uncovering ideas of such depth. The recommended, but not required, ingredients include: a park with trees, shoes, your mind, a significant other, and a dog. You could realistically get along with just the first two, but talking with someone you trust about these big ideas can be really enlightening about your own intentions. &lt;em&gt;Option 2:&lt;/em&gt; Phone a friend. It works on game shows and it works in your life. Your friends probably know you better than you know yourself, and you should be making time to catch up with them anyway.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What will the process look like?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;While more detailed than the existential why of graduate school, the what can be just as important. I recommend a five year plan (or at least two) be sketched around a month out from your start. Adopted from Dr. Karen Kelsky&amp;rsquo;s 
+&lt;a href=&#34;http://theprofessorisin.com/pearlsofwisdom/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;book and accompanying blog&lt;/a&gt; &lt;em&gt;The Professor is In: The Essential Guide to Turning your PhD into a Job&lt;/em&gt;, this plan will give you 1) piece of mind that all deadlines are written down, 2) a tangible finish line, and 3) the same two things for your loved ones. Map out when you start, plan to finish, big life events (marriage? moving?) and holidays then fill in as you (inevitably) collect obligations.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s all for this week! Check in here to say how your big ideas are flowing- what did you find? What do others in your life think?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Special Topics: Reading Scientific Manuscripts</title>
+      <link>https://walkerblackston.com/blog/special-topics-reading-scientific-manuscripts/</link>
+      <pubDate>Sun, 02 Feb 2020 15:05:00 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/special-topics-reading-scientific-manuscripts/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Photo by 
+&lt;a href=&#34;https://unsplash.com/@roman_lazygeek?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Roman Mager&lt;/a&gt; on 
+&lt;a href=&#34;https://unsplash.com/s/photos/chalkboard?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Unsplash&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;_“It doesn&amp;rsquo;t matter how beautiful your theory is, it doesn&amp;rsquo;t matter how smart you are. If it doesn&amp;rsquo;t agree with experiment, it&amp;rsquo;s wrong.” _&lt;/p&gt;
+&lt;p&gt;- Richard Fenyman&lt;/p&gt;
+&lt;p&gt;Like it or not, publishing a scientific article 
+&lt;a href=&#34;https://science.sciencemag.org/content/350/6256/49&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;remains&lt;/a&gt; the 
+&lt;a href=&#34;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3999612/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;primary productivity metric for academic researchers&lt;/a&gt;. &amp;ldquo;
+&lt;a href=&#34;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3999612/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Publish or perish&amp;rdquo; is no joke&lt;/a&gt; (and the name of a 
+&lt;a href=&#34;https://harzing.com/resources/publish-or-perish&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;great citation tracker&lt;/a&gt;). Even outside of academia, the ability to 
+&lt;a href=&#34;https://www.sciencemag.org/careers/2012/09/so-you-think-you-have-skills&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;quickly synthesize and extract information from these papers will provide necessary context&lt;/a&gt; for your work in the field. Numerous scholars have 
+&lt;a href=&#34;https://www.sciencemag.org/careers/2016/03/how-seriously-read-scientific-paper&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;opined on the best way to learn this process&lt;/a&gt; . But they are likely coming from a related technical field. We are humanities folks. We can ponder the racial theory of Vonnegut one day, and the feminist critiques of Dickinson another. I would argue, however, less domain specific knowledge is needed to “get” a scientific article than you think. Regardless of field, I propose the following 5 steps &lt;strong&gt;to drastically improve your reading time and knowledge obtained&lt;/strong&gt; from each manuscript:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1)&lt;/strong&gt; &lt;strong&gt;Read backwards.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Similar to a journalist in a major periodical, scientists have, generally, one &amp;ldquo;&lt;strong&gt;big idea&lt;/strong&gt;&amp;rdquo; they wish to convey to their audience. All that changes are the methods. Instead of extended metaphors and wordplay, we deal in variables, study designs, and causal pathways. Because the arc of the story remains consistent, I recommend that beginners &lt;strong&gt;start with the conclusion of a scientific article.&lt;/strong&gt; This will ensure two things: (1) you have a “big picture” of the story the authors are telling, and (2) you can more easily predict how they conducted their experiment(s). This is like skipping ahead to the punchline of a joke—sure, it ruins the suspense, but it gives you the main ideas all at once [re-work this metaphor]. &lt;/p&gt;
+&lt;p&gt;Before moving to our next step, quickly glance at any &lt;em&gt;sources of funding mentioned after the conclusion&lt;/em&gt;. There are heated ongoing debates whether this belongs in science (I remain neutral as we do not have enough data yet to determine its influence and each source is different), but it can help you understand why the work is being done. &lt;/p&gt;
+&lt;p&gt;2) &lt;strong&gt;Stop. Take two minutes to guess what comes next.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I know, this is weird. You wouldn’t pick up &lt;em&gt;The Sun Also Rises,&lt;/em&gt; read “&lt;em&gt;Isn’t it pretty to think so&lt;/em&gt;,” and then stop to think about how Hemingway set the stage. But this isn’t Hemingway. We can expect certain things to be said from science papers. If this is literally your first scientific article, &lt;em&gt;take a stab!&lt;/em&gt; You will be surprised how well your guess matches the methods presented. Write this guess down in the margin and move to step three. Making it this far means you have committed to the broader scientific process of hypothesize, test, feedback and repeat - a process growing in popularity 
+&lt;a href=&#34;https://www.scotthyoung.com/blog/2019/03/18/5-strategies-ace-exam/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;among study hacking circles.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;3) &lt;strong&gt;Read the introduction deeply.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This advice also runs counter to conventional wisdom which tells you to more or less skim the introduction . This is wise for &lt;em&gt;experienced scientists&lt;/em&gt; who only need to extract some context before plunging into the methods and results. You need it all. Be looking for how they discuss certain phenomenon—how do they phrase what they know? Is a relationship already established (“&lt;em&gt;we know X influences Y&lt;/em&gt;”)? Is it unclear (“&lt;em&gt;it is likely that&lt;/em&gt; X” or &lt;em&gt;“emerging evidence suggests that Y”)&lt;/em&gt;? Context for the narrative will come. You need to meticulously pick out their linguistic tools. As you finish this close reading, circle concepts or phenomena of interest or confusion (for later articles!).&lt;/p&gt;
+&lt;p&gt;4) &lt;strong&gt;Skim the methods and results.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The methods and results are the cash cow of most scientific papers[cite]. Here I propose another tactic that departs from conventional wisdom. However, for &lt;em&gt;our&lt;/em&gt; purposes, beginners need context and process more than getting bogged down in the details. Trying to read this section for comprehension early on is like reading senior theses in your freshman seminar. Instead, 
+&lt;a href=&#34;https://www.calnewport.com/blog/2017/08/14/how-i-read-when-researching-a-book/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;circle&lt;/strong&gt; or &lt;strong&gt;draw&lt;/strong&gt; arrows to concepts you would like to eventually learn.&lt;/a&gt; This accomplishes two things: it primes you for actually learning them more deeply later, and it gives you a starting place to read more papers in the field. If you feel like you &lt;em&gt;have&lt;/em&gt; to cover some of the results, focus on whatever they present in the first paragraph of the results section. This will typically offer a statistical summary of their findings supporting the &lt;strong&gt;&amp;ldquo;big idea.&amp;quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;5) &lt;strong&gt;Read the discussion like a play.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;ve taken an acting class or seen a live play (given you are trained in the humanities, this is a fair assumption) you know that almost all plays follow a formula. They contain characters, setting, dialogue and a resolution divided into acts. Science trades in variables, samples, comparison and discussion to deliver its biggest ideas. Framing a scientific manuscript as a play provides a solid framework to maintain comprehension in the face of difficult language or math.&lt;/p&gt;
+&lt;p&gt;For example, when I was first reading articles on survival analysis, I imagined the hazard ratio (change in survival over change in time) as an old-timey, sepia-toned scene where someone was stitching together tons of snapshot pictures for an overall movie of a dance. If you took one picture it would give you information on what the dancers were doing at the &lt;em&gt;precise&lt;/em&gt; instant they were photographed, conditioned that they were still dancing. Swap out dancers for patients in a cardiothoracic surgery clinic, and the concept holds true.&lt;/p&gt;
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Being able to extract useful information from scientific manuscripts touches many careers in and outside of science. Most importantly, if done in what I am calling the &lt;strong&gt;storytelling framework&lt;/strong&gt;, it will connect you to our most ancient trades and practices as a species. Try it out and let me know how it goes in the comments below! What worked and what didn&amp;rsquo;t?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://walkerblackston.com/blog/about/</link>
+      <pubDate>Sat, 01 Feb 2020 15:40:55 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/about/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all!&lt;/p&gt;
+&lt;p&gt;My name is Walker Blackston. I am a PhD student in epidemiology with a background in the humanities. I&amp;rsquo;ve worked in restaurants, labs, coffee shops, the government and academia, but am really just a curious kid from Mississippi.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s my hope that you find some value or connection with this blog- as I wish I had when I was making the wild and unclear transition from the arts to the sciences. I still have lots to learn, so we are in this together!&lt;/p&gt;
+&lt;p&gt;P.S. Expect pictures of my 110 pound retreiver, Opal, to be heavily featured.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://casualinferencedotorg.files.wordpress.com/2020/02/4d869f58-dc46-41ad-b2c5-63a48983afa0.jpeg?w=225&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://walkerblackston.com/blog/</link>
+      <pubDate>Fri, 31 Jan 2020 22:00:37 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Blog</title>
+      <link>https://walkerblackston.com/blog/blog/</link>
+      <pubDate>Fri, 31 Jan 2020 22:00:37 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Blog Feed</title>
+      <link>https://walkerblackston.com/blog/blog-feed/</link>
+      <pubDate>Fri, 31 Jan 2020 21:55:36 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/blog-feed/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Home</title>
+      <link>https://walkerblackston.com/blog/home/</link>
+      <pubDate>Fri, 31 Jan 2020 21:55:34 +0000</pubDate>
+      <guid>https://walkerblackston.com/blog/home/</guid>
+      <description>&lt;h1 id=&#34;transitioning-from-humanities-to-stem&#34;&gt;Transitioning from humanities to STEM:&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;follow&#34;&gt;Follow:&lt;/h3&gt;
+&lt;p&gt;Updated weekly, never with ads:&lt;/p&gt;
+&lt;p&gt;[jetpack_subscription_form show_only_email_and_button=&amp;quot;true&amp;rdquo; custom_background_button_color=&amp;quot;undefined&amp;rdquo; custom_text_button_color=&amp;quot;undefined&amp;rdquo; submit_button_text=&amp;quot;Subscribe&amp;rdquo; submit_button_classes=&amp;quot;undefined&amp;rdquo; show_subscribers_total=&amp;quot;true&amp;rdquo; ]&lt;/p&gt;
 </description>
     </item>
     
