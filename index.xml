@@ -5,7 +5,7 @@
     <link>https://walkerblackston.com/</link>
       <atom:link href="https://walkerblackston.com/index.xml" rel="self" type="application/rss+xml" />
     <description>Walker Blackston</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>2020</copyright><lastBuildDate>Wed, 20 May 2020 13:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Wed, 20 May 2020 13:00:00 +0000</lastBuildDate>
     <image>
       <url>https://walkerblackston.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Walker Blackston</title>
@@ -232,6 +232,38 @@
 &lt;p&gt;&amp;hellip;&lt;/p&gt;
 &lt;p&gt;Being able to extract useful information from scientific manuscripts touches many careers in and outside of science. Most importantly, if done in what I am calling the &lt;strong&gt;storytelling framework&lt;/strong&gt;, it will connect you to our most ancient trades and practices as a species. Try it out and let me know how it goes in the comments below! What worked and what didn&amp;rsquo;t?&lt;/p&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Comparison of Aggregated N-of-1 Trials with Parallel and Crossover Randomized Controlled Trials Using Simulation Studies</title>
+      <link>https://walkerblackston.com/publication/content/publication/blackston-2019/</link>
+      <pubDate>Fri, 01 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://walkerblackston.com/publication/content/publication/blackston-2019/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gut microbiota diversity is associated with cardiorespiratory fitness in post‐primary treatment breast cancer survivors</title>
+      <link>https://walkerblackston.com/publication/content/publication/carter-2019/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>https://walkerblackston.com/publication/content/publication/carter-2019/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Changing rates in fracture trends are temporally associated with declining testing and treatment: reality or ecologic fallacy?</title>
+      <link>https://walkerblackston.com/publication/content/publication/wright-2019/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://walkerblackston.com/publication/content/publication/wright-2019/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Finding Benefit in n-of-1 Trials</title>
+      <link>https://walkerblackston.com/publication/content/publication/chapple-2019/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://walkerblackston.com/publication/content/publication/chapple-2019/</guid>
+      <description></description>
     </item>
     
   </channel>
